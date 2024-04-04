@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <title>203Garage｜the vintage store</title>
+    <meta name="description" content="203Garage｜Login Page">
+    <meta name="keywords" content="vintage, 빈티지샵, 빈티지, 중고매장, 중고 옷 팔기">
+
+    <meta property="og:type" content="website">
+    <!--
+    <meta property="og:url" content="https://example.com/page.html">
+    -->
+    <meta property="og:title" content="203Garage｜the vintage store">
+    <!--
+        <meta property="og:image" content="https://example.com/image.jpg">
+    -->
+    <meta property="og:description" content="203Garage｜Login Page">
+    <meta property="og:site_name" content="203Garage｜the vintage store">
+    <meta property="og:locale" content="ko_KR">
+
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="zoomDisabler.js" defer></script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-storage.js"></script>
+
+  <script>
+    const firebaseConfig = {
+        apiKey: "AIzaSyCyOKfpP4iWe6ruzCZdlFU-A1_M6-o_4ZU",
+        authDomain: "garage-a3390.firebaseapp.com",
+        projectId: "garage-a3390",
+        storageBucket: "garage-a3390.appspot.com",
+        messagingSenderId: "701651792962",
+        appId: "1:701651792962:web:3db7b2ce426ebb878169db"
+        };
+
+        // initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+  </script>
+
+    <!--nav Bar-->
+    <nav id="nav">
+        <a class="navLogo">203Garage</a>
+          <ul class="menu">
+            <li class="genre">All</li>
+            <li class="genre">Outer</li>
+            <li class="genre">Top</li>
+            <li class="genre">Bottom</li>
+            <li class="genre">Shoes</li>
+            <li class="genre">Acc</li>
+          </ul>
+        <a class="footer">My</a>
+    </nav>
+
+    <!--Container-->
+    <div class="container">
+
+        <div class="loginRegisterContainer">
+
+        <div class="loginContainer">
+            <div class="loginTitle mb-3">login</div>
+            <div class="mb-3">
+              <input
+                type="email"
+                class="form-control"
+                placeholder="email"
+                id="email"
+              />
+            </div>
+            <div class="mb-3">
+              <input
+                type="password"
+                class="form-control"
+                placeholder="password"
+                id="password"
+              />
+            </div>
+            <button type="submit" class="btn btn-dark" id="login">login</button>
+          </div>
+      
+          <!-- register container -->
+          <div class="registerContainer">
+            <div class="loginTitle mb-3">register</div>
+            <div class="mb-3">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="name"
+                id="name-new"
+              />
+            </div>
+            <div class="mb-3">
+              <input
+                type="email"
+                class="form-control"
+                placeholder="email"
+                id="email-new"
+              />
+            </div>
+            <div class="mb-3">
+              <input
+                type="password"
+                class="form-control"
+                placeholder="password"
+                id="password-new"
+              />
+            </div>
+            <button type="submit" class="btn btn-dark" id="register">register</button>
+          </div>
+
+        </div>
+
+        <a class="loginWindow">Click to login</a>
+        <a class="registerWindow">Click to register</a>
+
+    </div>
+
+    <script>
+         // page Move
+        $('.loginContainer').show();
+        $(".registerContainer").hide()
+
+        $(".loginWindow").click(function () {
+        $(".loginRegisterContainer").fadeOut(500, function() {
+            $(".registerContainer").hide()
+            $('.loginContainer').show();
+            $(".loginRegisterContainer").fadeIn(500);
+        }); 
+        })
+
+        $(".registerWindow").click(function () {
+        $(".loginRegisterContainer").fadeOut(500, function() {
+            $(".loginContainer").hide()
+            $('.registerContainer').show();
+            $(".loginRegisterContainer").fadeIn(500);
+        }); 
+        })
+    </script>
+
+    <script>
+        const db = firebase.firestore();
+        const storage = firebase.storage();
+  
+        // login Method
+        $("#login").click(function () {
+          var Email = $("#email").val();
+          var Pw = $("#password").val();
+  
+          firebase
+            .auth()
+            .signInWithEmailAndPassword(Email, Pw)
+            .then((result) => {
+              window.location.href = "/index.html";
+            })
+            .catch((error) => console.log(error));
+        });
+  
+        // register Method
+        $("#register").click(function () {
+          var registerEmail = $("#email-new").val();
+          var registerPw = $("#password-new").val();
+          var registerName = $("#name-new").val();
+  
+          firebase
+            .auth()
+            .createUserWithEmailAndPassword(registerEmail, registerPw)
+            .then((result) => {
+              result.user
+                .updateProfile({ displayName: registerName })
+                .then(() => {
+                  window.location.href = "/index.html";
+                })
+                .catch();
+            })
+            .catch((error) => console.log(error));
+        });
+      </script>
+
+</body>
+</html>

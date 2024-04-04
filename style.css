@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR&display=swap');
+
 html {
     height: 100%;
     width: 100%;
@@ -8,22 +10,54 @@ html {
     text-size-adjust: none;
   }
 
-#nav {
-    position: fixed;
-    top: 0px;
-    left: 0px;
+body {
+    height: 100%;
     width: 100%;
-    height: 4rem;
-    border-bottom: solid 1px;
-    font-size: 2rem;
 }
 
-.page {
-    position: absolute;
-    top: 4rem;
-    left: 0rem;
+#nav {
+    position: fixed;
+    right: 0px;
+    top: 2rem;
+    width: 4rem;
     height: calc(100dvh - 4rem);
-    width: 100%;
-    font-size: 2rem;
-    text-align: center;
+    border-left: solid 1px;
+    writing-mode: vertical-rl;
+    text-orientation: sideways;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    font-family: "Noto Serif KR", serif;
+    font-weight: 900;
+    font-style: normal;
+}
+
+.navLogo {
+    font-size: 1rem;
+}
+
+.menu {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    height: 100%;
+    float:left;
+}
+
+.genre {
+    display:inline-block;
+    text-align:center;
+    margin-bottom: 1rem;
+}
+
+.footer {
+    font-size: 1rem;
+    margin-top: auto;
+}
+
+.container {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    height: calc(100dvh - 4rem);
+    width: calc(100% - 6rem);
 }
