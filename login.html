@@ -55,19 +55,10 @@
     <div class="background"></div>
 
     <!--nav Bar-->
-    <nav id="nav">
-        <a class="navLogo" href="/index.html">203Garage</a>
-          <ul class="menu">
-            <li class="genre">All</li>
-            <li class="genre">Outer</li>
-            <li class="genre">Top</li>
-            <li class="genre">Bottom</li>
-            <li class="genre">Shoes</li>
-            <li class="genre">Acc</li>
-            <li class="genre" id="uploadPageMoveBtn">Upload</li>
-          </ul>
-        <a class="footer" href="/login.html">Login</a>
-    </nav>
+    <div id="nav"></div>
+    <script>
+      $("#nav").load("nav.html");
+    </script>
 
     <!--protection Margin-->
     <div class="protMarginTop"></div>
@@ -180,6 +171,16 @@
             })
             .catch((error) => console.log(error));
         });
+
+        // login Checker
+      firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+          localStorage.setItem("user", JSON.stringify(user));
+        }
+        else {
+          localStorage.removeItem("user"); 
+        }
+      });
   
         // register Method
         $("#register").click(function () {
@@ -191,6 +192,8 @@
             .auth()
             .createUserWithEmailAndPassword(registerEmail, registerPw)
             .then((result) => {
+              var userDetails = { name: registerName, email: registerEmail, password: registerPw, uid: result.user.uid, date: new Date() }
+              db.collection('user').doc(result.user.uid).set(userDetails)
               result.user
                 .updateProfile({ displayName: registerName })
                 .then(() => {

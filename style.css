@@ -151,6 +151,7 @@ body {
 
 #uploadPageMoveBtn {
     margin-top: 1rem;
+    cursor: pointer;
 }
 
 .footer {
@@ -222,10 +223,10 @@ button, button:active, button:focus {
     width: fit-content;
     height: fit-content;
     display: flex;
-    padding: 2rem;
     flex-direction: column;
     align-items: center;
-    margin: 0 auto;
+    margin: 2rem auto;
+    cursor: pointer;
 }
 
 .thumbnail {
@@ -241,13 +242,15 @@ button, button:active, button:focus {
     font-family: "Noto Sans KR, sans-serif";
     font-weight: 500;
     font-style: normal;
-    font-size: 1rem;
+    font-size: 1.3rem;
 }
 
 .product .brand {
+    font-weight: 700;
     font-size: 1.5rem;
 }
 
 .product .price {
+  font-weight: 600;
   font-size: 1.3rem;
 }

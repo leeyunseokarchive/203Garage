@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
     <title>203Garage｜the vintage store</title>
-    <meta name="description" content="203Garage｜Main Page">
+    <meta name="description" content="203Garage｜Upload Page">
     <meta name="keywords" content="vintage, 빈티지샵, 빈티지, 중고매장, 중고 옷 팔기">
 
     <meta property="og:type" content="website">
@@ -15,7 +15,7 @@
     <!--
         <meta property="og:image" content="https://example.com/image.jpg">
     -->
-    <meta property="og:description" content="203Garage｜Main Page">
+    <meta property="og:description" content="203Garage｜Upload Page">
     <meta property="og:site_name" content="203Garage｜the vintage store">
     <meta property="og:locale" content="ko_KR">
 
@@ -74,24 +74,7 @@
       return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
       }
 
-      db.collection("product")
-        .get()
-        .then((result) => {
-          result.forEach((doc) => {
-            console.log(doc.data());
-            var template = `<div class="product" onclick="location.href='/login.html';">
-          <div class="thumbnail" style="background-image: url('${doc.data().image}') ;"></div>
-          <div class="productIndex">
-            <p class="brand">${doc.data().brand}</h5>
-            <p class="category">${doc.data().category}</p>
-            <p class="size">size: ${doc.data().size}</p>
-            <p class="price">${priceToString(doc.data().price)} KRW</p>
-          </div>
-        </div>`;
 
-            $(".container").append(template);
-          });
-        });
     </script>
 
 </body>
