@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=0">
     <title>203Garage｜the vintage store</title>
     <meta name="description" content="203Garage｜Upload Page">
     <meta name="keywords" content="vintage, 빈티지샵, 빈티지, 중고매장, 중고 옷 팔기">
@@ -18,10 +18,6 @@
     <meta property="og:description" content="203Garage｜Upload Page">
     <meta property="og:site_name" content="203Garage｜the vintage store">
     <meta property="og:locale" content="ko_KR">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
     <link rel="icon" href="data:,">
     <link rel="stylesheet" href="reset.css">
@@ -74,7 +70,10 @@
         <div class="centerContainer">
 
           <p class="question">Photo</p>
-          <input class="form1" type="file" id="image" accept="image/*" onchange="setThumbnail(event);"/>
+          <input class="form1" type="file" name="image" id="image" accept="image/*" onchange="setThumbnail(event);" style="display: none;"/>
+          <label for="image">
+            <div class="form1"><p class="fileName" style="position: relative; top: 0.3rem; left: 0.2rem; color: gray;">Choose file</p></div>
+          </label>
 
           <p class="question">Brand</p>
           <input type="text" class="form1" id="brand" placeholder="Ex) Nike"/>
@@ -127,6 +126,7 @@
        // uploading method
        $("#upload").click(function () {
         var file = document.querySelector("#image").files[0];
+        console.log(file);
         var storageRef = storage.ref();
         var saveRoute = storageRef.child("image/" + file.name);
         var uploading = saveRoute.put(file);
@@ -160,7 +160,7 @@
                 .add(productInfo)
                 .then((result) => {
                   console.log(result);
-                  //window.location.href = "./index.html";
+                  window.location.href = "./index.html";
                 })
                 .catch((err) => {
                   console.log(err);
