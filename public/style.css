@@ -162,6 +162,7 @@ body {
 }
 
 .container {
+    display: none;
     position: absolute;
     top: 0rem;
     left: 2rem;
