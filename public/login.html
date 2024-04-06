@@ -167,7 +167,7 @@
             .auth()
             .signInWithEmailAndPassword(Email, Pw)
             .then((result) => {
-              window.location.href = "/index.html";
+              window.location.href = "./index.html";
             })
             .catch((error) => console.log(error));
         });
@@ -197,7 +197,7 @@
               result.user
                 .updateProfile({ displayName: registerName })
                 .then(() => {
-                  window.location.href = "/index.html";
+                  window.location.href = "./index.html";
                 })
                 .catch();
             })
