@@ -65,15 +65,110 @@
     <div class="protMarginBottom"></div>
 
     <!--container-->
-    <div class="container"></div>
+    <div class="container">
+
+      <div class="uploadForm">
+
+        <div id="imageContainer"></div>
+
+        <div class="productIndex">
+
+          <p class="question">Photo</p>
+          <input class="form1" type="file" id="image" accept="image/*" onchange="setThumbnail(event);"/>
+
+          <p class="question">Brand</p>
+          <input type="text" class="form1" id="brand" placeholder="Ex) Nike"/>
+
+          <p class="question">Category</p>
+          <select name="category" class="category" id="category">
+            <option value="outer">Outer</option>
+            <option value="top">Top</option>
+            <option value="bottom">Bottom</option>
+            <option value="shoes">Shoes</option>
+            <option value="acc">Accessory</option>
+          </select>
+
+          <p class="question">Size</p>
+          <input type="text" class="form1" id="size" placeholder="Ex) XL or 245 or free"/>
+
+          <p class="question">Price</p>
+          <input type="number" class="form1" id="price" placeholder="Ex) 95400"/>
+
+          <p class="question">Details</p>
+          <textarea class="detail" id="detail">Ex) I bought it five years ago..</textarea>
+
+          <div><button class="btn" id="upload">Upload !</button></div>
+          
+        </div>
+      </div>
+
+    </div>
+
+    <script>
+      function setThumbnail(event) {
+        var reader = new FileReader();
+
+        reader.onload = function(event) {
+          $(".thumbnail").remove();
+          var img = document.createElement("img");
+          img.setAttribute("class", "thumbnail");
+          img.setAttribute("src", event.target.result);
+          document.querySelector("div#imageContainer").appendChild(img);
+        };
+
+        reader.readAsDataURL(event.target.files[0]);
+      }
+    </script>
 
     <script>
       const db = firebase.firestore();
+      const storage = firebase.storage();
 
-      function priceToString(price) {
-      return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-      }
+       // uploading method
+       $("#upload").click(function () {
+        var file = document.querySelector("#image").files[0];
+        var storageRef = storage.ref();
+        var saveRoute = storageRef.child("image/" + file.name);
+        var uploading = saveRoute.put(file);
 
+        uploading.on(
+          "state_changed",
+          // 업로드 중 동작하는 함수
+          null,
+          // 에러시 동작하는 함수
+          (error) => {
+            console.error("실패사유는", error);
+          },
+          // 성공시 동작하는 함수
+          () => {
+            uploading.snapshot.ref.getDownloadURL().then((url) => {
+              console.log("업로드된 경로는", url);
+
+              var productInfo = {
+                image: url,
+                brand: $("#brand").val(),
+                category: $("#category").val(),
+                size: $("#size").val(),
+                price: $("#price").val(),
+                detail: $("#detail").val(),
+                date: new Date(),
+                salerUid: JSON.parse(localStorage.getItem("user")).uid,
+                salerName: JSON.parse(localStorage.getItem("user")).displayName,
+              };
+
+              db.collection("product")
+                .add(productInfo)
+                .then((result) => {
+                  console.log(result);
+                  //window.location.href = "./index.html";
+                })
+                .catch((err) => {
+                  console.log(err);
+                });
+            });
+          },
+        );
+      });
 
     </script>
 

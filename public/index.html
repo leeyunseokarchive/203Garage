@@ -79,7 +79,7 @@
         .then((result) => {
           result.forEach((doc) => {
             console.log(doc.data());
-            var template = `<div class="product" onclick="location.href="./detail.html?id=${doc.id}";">
+            var template = `<div class="product" OnClick="location.href ='./upload.html'" style="cursor:pointer;" >
           <div class="thumbnail" style="background-image: url('${doc.data().image}') ;"></div>
           <div class="productIndex">
             <p class="brand">${doc.data().brand}</h5>

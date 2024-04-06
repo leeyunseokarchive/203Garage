@@ -193,14 +193,20 @@ body {
     margin-bottom: 1rem;
 }
 
-input, input:focus, input:active {
+input, input:focus, input:active, textarea, select {
     font-family: "Noto Serif KR", serif;
     border: 0.1rem solid;
     font-size: 1rem;
     width: 15rem;
+    height: 2rem;
     outline: none;
     box-shadow: none;
     background-color: transparent;
+    resize: none;
+}
+
+textarea {
+  height: 10rem;
 }
 
 button, button:active, button:focus {
@@ -210,6 +216,7 @@ button, button:active, button:focus {
     border-radius: 0rem;
     box-shadow: none;
     width: 15rem;
+    height: 2rem;
     font-size: 1rem;
     background-color: transparent;
     cursor: pointer;
@@ -225,8 +232,7 @@ button, button:active, button:focus {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 2rem auto;
-    cursor: pointer;
+    margin: 4rem auto;
 }
 
 .thumbnail {
@@ -236,6 +242,10 @@ button, button:active, button:focus {
     background-size: cover;
     background-position: center;
     margin-bottom: 1rem;
+}
+
+.imageContainer {
+  max-width: 20rem;
 }
 
 .productIndex {
@@ -253,4 +263,15 @@ button, button:active, button:focus {
 .product .price {
   font-weight: 600;
   font-size: 1.3rem;
+}
+
+.uploadForm {
+  margin: 0 auto;
+  margin-top: 10rem;
+  width: fit-content;
+}
+
+.productIndex {
+  margin: 0 auto;
+  width: fit-content;
 }
