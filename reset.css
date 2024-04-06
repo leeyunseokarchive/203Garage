@@ -66,6 +66,7 @@ a:link, a:visited, a:hover, a:active, a:focus, li:focus, li:active, button:activ
     user-select: none;
     font: inherit;
     color: black;
+    cursor: pointer;
   }
   input, textarea, button {
     appearance: none;

@@ -211,6 +211,7 @@ button, button:active, button:focus {
     width: 15rem;
     font-size: 1rem;
     background-color: transparent;
+    cursor: pointer;
 }
 
 .inp {
@@ -218,19 +219,22 @@ button, button:active, button:focus {
 }
 
 .product {
-    width: 100%;
+    width: fit-content;
+    height: fit-content;
     display: flex;
+    padding: 2rem;
     flex-direction: column;
     align-items: center;
-    padding: 2rem;
+    margin: 0 auto;
 }
 
 .thumbnail {
     max-width: 20rem;
-    width: 100%;
+    width: 20rem;
     height: 20rem;
     background-size: cover;
     background-position: center;
+    margin-bottom: 1rem;
 }
 
 .productIndex {
@@ -242,4 +246,8 @@ button, button:active, button:focus {
 
 .product .brand {
     font-size: 1.5rem;
+}
+
+.product .price {
+  font-size: 1.3rem;
 }
