@@ -47,6 +47,9 @@
       firebase.initializeApp(firebaseConfig);
   </script>
 
+    <!--noise Background-->
+    <div class="background"></div>
+
     <!--nav Bar-->
     <nav id="nav">
         <a class="navLogo">203Garage</a>
@@ -61,14 +64,19 @@
         <a class="footer">My</a>
     </nav>
 
-    <!--Container-->
+    <!--protection Margin-->
+    <div class="protMarginTop"></div>
+    <div class="protMarginBottom"></div>
+
+    <!--container-->
     <div class="container">
 
+      <div class="verticalLine"></div>
         <div class="loginRegisterContainer">
 
         <div class="loginContainer">
-            <div class="loginTitle mb-3">login</div>
-            <div class="mb-3">
+            <div class="loginTitle">L❋gin</div>
+            <div class="inp">
               <input
                 type="email"
                 class="form-control"
@@ -76,7 +84,7 @@
                 id="email"
               />
             </div>
-            <div class="mb-3">
+            <div class="inp">
               <input
                 type="password"
                 class="form-control"
@@ -84,13 +92,16 @@
                 id="password"
               />
             </div>
-            <button type="submit" class="btn btn-dark" id="login">login</button>
+            <button type="submit" class="btn" id="login">login</button>
+            <div class="swapBtn">
+            <a id="registerWindow">Click to register</a>
+          </div>
           </div>
       
           <!-- register container -->
           <div class="registerContainer">
-            <div class="loginTitle mb-3">register</div>
-            <div class="mb-3">
+            <div class="loginTitle">REGISER</div>
+            <div class="inp">
               <input
                 type="text"
                 class="form-control"
@@ -98,7 +109,7 @@
                 id="name-new"
               />
             </div>
-            <div class="mb-3">
+            <div class="inp">
               <input
                 type="email"
                 class="form-control"
@@ -106,7 +117,7 @@
                 id="email-new"
               />
             </div>
-            <div class="mb-3">
+            <div class="inp">
               <input
                 type="password"
                 class="form-control"
@@ -114,33 +125,34 @@
                 id="password-new"
               />
             </div>
-            <button type="submit" class="btn btn-dark" id="register">register</button>
+
+            <button type="submit" class="btn" id="register">register</button>
+          <div class="swapBtn">
+            <a id="loginWindow">Click to login</a>
+          </div>
           </div>
 
         </div>
-
-        <a class="loginWindow">Click to login</a>
-        <a class="registerWindow">Click to register</a>
 
     </div>
 
     <script>
          // page Move
         $('.loginContainer').show();
-        $(".registerContainer").hide()
+        $(".registerContainer").hide();
 
-        $(".loginWindow").click(function () {
+        $("#loginWindow").click(function () {
         $(".loginRegisterContainer").fadeOut(500, function() {
-            $(".registerContainer").hide()
-            $('.loginContainer').show();
+            $(".registerContainer, .loginWindow").hide();
+            $('.loginContainer, .registerWindow').show();
             $(".loginRegisterContainer").fadeIn(500);
         }); 
         })
 
-        $(".registerWindow").click(function () {
+        $("#registerWindow").click(function () {
         $(".loginRegisterContainer").fadeOut(500, function() {
-            $(".loginContainer").hide()
-            $('.registerContainer').show();
+            $(".loginContainer, .registerWindow").hide();
+            $('.registerContainer, .loginWindow').show();
             $(".loginRegisterContainer").fadeIn(500);
         }); 
         })
