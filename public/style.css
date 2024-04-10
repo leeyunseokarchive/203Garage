@@ -169,6 +169,7 @@ body {
     height: 100%;
     width: calc(100% - 6rem);
     overflow-y: scroll;
+    transition: all 1s ease-in-out;
 }
 
 .verticalLine {
@@ -244,13 +245,22 @@ button, button:active, button:focus {
     margin-bottom: 0.5rem;
 }
 
+.productList {
+    padding: 4rem 0 4rem 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-rows: auto;
+    gap: 2rem;
+    row-gap: 4rem;
+}
+
 .product {
+    margin: 0 auto;
     width: fit-content;
     height: fit-content;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 4rem auto;
 }
 
 .thumbnail {

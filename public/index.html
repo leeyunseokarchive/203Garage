@@ -20,14 +20,14 @@
     <meta property="og:locale" content="ko_KR">
 
     <link rel="icon" href="data:,">
-    <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./reset.css">
+    <link rel="stylesheet" href="./style.css">
+
+    <script src="./zoomDisabler.js" defer></script>
 </head>
 <body>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
   integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-  
-    <script src="zoomDisabler.js" defer></script>
 
     <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
@@ -62,7 +62,9 @@
     <div class="protMarginBottom"></div>
 
     <!--container-->
-    <div class="container"></div>
+    <div class="container">
+      <div class="productList"></div>
+    </div>
 
     <script>
       const db = firebase.firestore();
@@ -71,13 +73,16 @@
       return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
       }
 
-      db.collection("product")
+      var queryStream = new URLSearchParams(window.location.search);
+      var category = queryStream.get("id");
+      if (category == null || category == "All") {
+        db.collection("product")
         .orderBy("date", "desc")
         .get()
         .then((result) => {
           result.forEach((doc) => {
             console.log(doc.data());
-            var template = `<div class="product" OnClick="location.href ='./detail.html?id=${doc.id}'" style="display: none; cursor:pointer;" >
+            var template = `<div class="product" OnClick="location.href ='./detail.html?id=${doc.id}'" style="cursor:pointer;" >
           <div class="thumbnail" style="background-image: url('${doc.data().image}') ;"></div>
           <div class="productIndex">
             <p class="brand">${doc.data().brand}</h5>
@@ -87,10 +92,31 @@
           </div>
         </div>`;
 
-            $(".container").append(template);
+            $(".productList").append(template);
           });
-          $(".product").fadeIn(500);
         });
+      }
+      else {
+        db.collection("product").where("category", "==", category).orderBy("date", "desc")
+        .get()
+        .then((result) => {
+          result.forEach((doc) => {
+            console.log(doc.data());
+            var template = `<div class="product" OnClick="location.href ='./detail.html?id=${doc.id}'" style="cursor:pointer;" >
+          <div class="thumbnail" style="background-image: url('${doc.data().image}') ;"></div>
+          <div class="productIndex">
+            <p class="brand">${doc.data().brand}</h5>
+            <p class="category">${doc.data().category}</p>
+            <p class="size">Size: ${doc.data().size}</p>
+            <p class="price">${priceToString(doc.data().price)} KRW</p>
+          </div>
+        </div>`;
+
+            $(".productList").append(template);
+          });
+        });
+      }
+        
     </script>
 
 </body>
