@@ -136,6 +136,7 @@ body {
 
 .navLogo {
     font-size: 1rem;
+    cursor: pointer;
 }
 
 .menu {
@@ -149,6 +150,7 @@ body {
     display:inline-block;
     text-align:center;
     margin-bottom: 1rem;
+    cursor: pointer;
 }
 
 #uploadPageMoveBtn {
@@ -159,6 +161,7 @@ body {
 .footer {
     font-size: 1rem;
     margin-top: auto;
+    cursor: pointer;
 }
 
 .container {
@@ -169,7 +172,6 @@ body {
     height: 100%;
     width: calc(100% - 6rem);
     overflow-y: scroll;
-    transition: all 1s ease-in-out;
 }
 
 .verticalLine {

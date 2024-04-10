@@ -82,7 +82,7 @@
         .then((result) => {
           result.forEach((doc) => {
             console.log(doc.data());
-            var template = `<div class="product" OnClick="location.href ='./detail.html?id=${doc.id}'" style="cursor:pointer;" >
+            var template = `<div class="product" OnClick="location.href ='./detail.html?id=${doc.id}'" style="display: none; cursor:pointer;" >
           <div class="thumbnail" style="background-image: url('${doc.data().image}') ;"></div>
           <div class="productIndex">
             <p class="brand">${doc.data().brand}</h5>
@@ -93,6 +93,7 @@
         </div>`;
 
             $(".productList").append(template);
+            $(".product").fadeIn(500);
           });
         });
       }
@@ -102,7 +103,7 @@
         .then((result) => {
           result.forEach((doc) => {
             console.log(doc.data());
-            var template = `<div class="product" OnClick="location.href ='./detail.html?id=${doc.id}'" style="cursor:pointer;" >
+            var template = `<div class="product" OnClick="location.href ='./detail.html?id=${doc.id}'" style="display: none; cursor:pointer;" >
           <div class="thumbnail" style="background-image: url('${doc.data().image}') ;"></div>
           <div class="productIndex">
             <p class="brand">${doc.data().brand}</h5>
@@ -113,6 +114,10 @@
         </div>`;
 
             $(".productList").append(template);
+            $(".product").ready(function() {
+              $(".product").fadeIn(500);
+            })
+            
           });
         });
       }
