@@ -75,6 +75,7 @@
 
       var queryStream = new URLSearchParams(window.location.search);
       var category = queryStream.get("id");
+      
       if (category == null || category == "All") {
         db.collection("product")
         .orderBy("date", "desc")
