@@ -319,3 +319,52 @@ button, button:active, button:focus {
   font-weight: 500;
   margin: 0.5rem;
 }
+
+@media (min-width: 650px) {
+
+  .detailGrid {
+    padding: 4rem 15% 4rem 15%;
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    grid-template-rows: repeat(6, 1fr);
+  }
+  
+  .detailImageContainer {
+    grid-row-start: 1;
+    grid-row-end: 8;
+  }
+
+}
+
+@media (max-width: 649px) {
+
+.detailGrid {
+    padding: 4rem 15% 4rem 15%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+
+}
+  
+.productDetailBrand {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.productDetailSalerName, .productDetailCategory, .productDetailSize, .productDetailDetail {
+  font-size: 1rem;
+  margin-top: 1rem;
+  color: #444;
+}
+
+.productDetailDetail {
+  color: black;
+}
+
+.productDetailPrice {
+  font-size: 1.8rem;
+  font-weight: 500;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}

@@ -64,9 +64,20 @@
     <!--container-->
     <div class="container"></div>
 
-    <div class="verticalLine"></div>
-    <div class="normalContainer">
-        <div class="thumbnail"></div>
+      <div class="detailGrid">
+        <div class="detailImageContainer">
+          <div class="detailImage" style="background-image: url('https://firebasestorage.googleapis.com/v0/b/garage-a3390.appspot.com/o/image%2Fskateboard.png?alt=media&token=c26c73cb-8d04-4dde-8c9c-6792a2395ad5')"></div>
+        </div>
+        <div class="productDetailBrand">Superme</div>
+        <div class="productDetailSalerName">Saler name: kim</div>
+        <div class="productDetailCategory">Category: Acc</div>
+        <div class="productDetailSize">Size: free</div>
+        <div class="productDetailDetail">Ex) I bought it five years ago..</div>
+        <div class="productDetailPrice">95400 KRW</div>
+
+        <div class="detailBtn"><button>Chat</button><button>Edit</button></div>
+      </div>    
+
     </div>
 
     <script>
@@ -76,6 +87,16 @@
       return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
       }
 
+      // detail Loading Method
+      var queryStream = new URLSearchParams(window.location.search);
+
+      db.collection("product")
+        .doc(queryStream.get("id"))
+        .get()
+        .then((result) => {
+          console.log(result.data());
+        })
+    
     </script>
 
 </body>
