@@ -1,2 +1,2 @@
 # 203Garage
-203Garage the vintage store
+203Garage the select shop
