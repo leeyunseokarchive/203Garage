@@ -62,18 +62,18 @@
     <div class="protMarginBottom"></div>
 
     <!--container-->
-    <div class="container"></div>
+    <div class="container">
 
       <div class="detailGrid">
         <div class="detailImageContainer">
-          <div class="detailImage" style="background-image: url('https://firebasestorage.googleapis.com/v0/b/garage-a3390.appspot.com/o/image%2Fskateboard.png?alt=media&token=c26c73cb-8d04-4dde-8c9c-6792a2395ad5')"></div>
+          <div class="detailImage" style="background-image: url(``)"></div>
         </div>
-        <div class="productDetailBrand">Superme</div>
-        <div class="productDetailSalerName">Saler name: kim</div>
-        <div class="productDetailCategory">Category: Acc</div>
-        <div class="productDetailSize">Size: free</div>
-        <div class="productDetailDetail">Ex) I bought it five years ago..</div>
-        <div class="productDetailPrice">95400 KRW</div>
+        <div class="productDetailBrand"></div>
+        <div class="productDetailSalerName"></div>
+        <div class="productDetailCategory"></div>
+        <div class="productDetailSize"></div>
+        <div class="productDetailDetail"></div>
+        <div class="productDetailPrice">KRW</div>
 
         <div class="detailBtn"><button>Chat</button><button>Edit</button></div>
       </div>    
@@ -95,6 +95,15 @@
         .get()
         .then((result) => {
           console.log(result.data());
+
+          $(".detailImage").css("background-image", `url(${result.data().image})`);
+          $(".productDetailBrand").html(result.data().brand);
+          $(".productDetailSalerName").html("Saler name: "+result.data().salerName);
+          $(".productDetailCategory").html("Category: "+result.data().category);
+          $(".productDetailSize").html("Size: "+result.data().size);
+          $(".productDetailDetail").html(result.data().detail);
+          $(".productDetailPrice").html(priceToString(result.data().price)+" KRW");
+
         })
     
     </script>

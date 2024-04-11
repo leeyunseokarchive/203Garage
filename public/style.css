@@ -80,6 +80,7 @@ body {
     height: 100%;
     width: 100%;
     min-width: 300px;
+    -ms-overflow-style: none;
     overflow: hidden;
     touch-action: none;
 }
@@ -272,9 +273,12 @@ button, button:active, button:focus {
     max-width: 20rem;
     width: 20rem;
     height: 20rem;
-    background-size: cover;
-    background-position: center;
     margin-bottom: 1rem;
+
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: white;
 }
 
 .imageContainer {
@@ -330,6 +334,7 @@ button, button:active, button:focus {
   }
   
   .detailImageContainer {
+    padding-right: 4rem;
     grid-row-start: 1;
     grid-row-end: 8;
   }
@@ -345,6 +350,18 @@ button, button:active, button:focus {
     grid-template-rows: auto;
   }
 
+  .detailImageContainer {
+    margin-bottom: 1rem;
+  }
+}
+
+.detailImage {
+  width: 100%;
+  padding-top: 100%;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: white;
 }
   
 .productDetailBrand {
