@@ -136,6 +136,7 @@
     </div>
 
     <script>
+      // show file thumbnail method
       function setThumbnail(event) {
         var reader = new FileReader();
 
@@ -197,8 +198,8 @@
                 price: $("#price").val(),
                 detail: $("#detail").val(),
                 date: new Date(),
-                salerUid: JSON.parse(localStorage.getItem("user")).uid,
-                salerName: JSON.parse(localStorage.getItem("user")).displayName,
+                sellerUid: JSON.parse(localStorage.getItem("user")).uid,
+                sellerName: JSON.parse(localStorage.getItem("user")).displayName,
               };
 
               db.collection("product")

@@ -15,13 +15,13 @@
 </nav>
 
 <script>
+      // according to login or not, show or hide login btn 
       if(localStorage.getItem('user')) {
         $("#loginPageMoveBtn").hide();
         $('#myPageMoveBtn').html(JSON.parse(localStorage.getItem('user')).displayName);
       }
       else {
-        $("#uploadPageMoveBtn").hide();
-        $("#myPageMoveBtn").hide();
+        $("#uploadPageMoveBtn, #myPageMoveBtn").hide();
       }
 </script>
 

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=0">
     <title>203Garage｜the vintage store</title>
-    <meta name="description" content="203Garage｜Main Page">
+    <meta name="description" content="203Garage｜Detail Page">
     <meta name="keywords" content="vintage, 빈티지샵, 빈티지, 중고매장, 중고 옷 팔기">
 
     <meta property="og:type" content="website">
@@ -15,7 +15,7 @@
     <!--
         <meta property="og:image" content="https://example.com/image.jpg">
     -->
-    <meta property="og:description" content="203Garage｜Main Page">
+    <meta property="og:description" content="203Garage｜My Page">
     <meta property="og:site_name" content="203Garage｜the vintage store">
     <meta property="og:locale" content="ko_KR">
 
@@ -63,73 +63,40 @@
 
     <!--container-->
     <div class="container">
-      <div class="productList"></div>
+
+      <div class="userInfoGrid">
+        <div class="myPageUserName">userName</div>
+        <div class="myPageUserRegisterDate">Registered on 05 / 01 / 2024</div>
+        <button class="detailBtn" id="logoutBtn">logout</button>
+      </div>
+
     </div>
 
     <script>
       const db = firebase.firestore();
 
-      // price translater
       function priceToString(price) {
       return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
       }
 
+      // detail Loading Method
       var queryStream = new URLSearchParams(window.location.search);
-      var category = queryStream.get("id");
-      
-      // according to categoty, show different products
-      if (category == null || category == "All") {
-        db.collection("product")
-        .orderBy("date", "desc")
+
+      db.collection("product")
+        .doc(queryStream.get("id"))
         .get()
         .then((result) => {
-          result.forEach((doc) => {
-            console.log(doc.data());
+          console.log(result.data());
 
-            var template = `<div class="product" OnClick="$('.container').fadeOut(500, function() {
-    window.location.href = './detail.html?id=${doc.id}';
- }); " style="display: none; cursor:pointer;" >
-          <div class="thumbnail" style="background-image: url('${doc.data().image}') ;"></div>
-          <div class="productIndex">
-            <p class="brand">${doc.data().brand}</h5>
-            <p class="category">${doc.data().category}</p>
-            <p class="size">Size: ${doc.data().size}</p>
-            <p class="price">${priceToString(doc.data().price)} KRW</p>
-          </div>
-        </div>`;
+          $(".detailImage").css("background-image", `url(${result.data().image})`);
+          $(".productDetailBrand").html(result.data().brand);
+          $(".productDetailSellerName").html("Seller name: "+result.data().sellerName);
+          $(".productDetailCategory").html("Category: "+result.data().category);
+          $(".productDetailSize").html("Size: "+result.data().size);
+          $(".productDetailDetail").html(result.data().detail);
+          $(".productDetailPrice").html(priceToString(result.data().price)+" KRW");
 
-            $(".productList").append(template);
-            $(".product").fadeIn(500);
-          });
-        });
-      }
-      else {
-        db.collection("product").where("category", "==", category).orderBy("date", "desc")
-        .get()
-        .then((result) => {
-          result.forEach((doc) => {
-            console.log(doc.data());
-            var template = `<div class="product" OnClick="$('.container').fadeOut(500, function() {
-    window.location.href = './detail.html?id=${doc.id}';
- }); " style="display: none; cursor:pointer;" >
-          <div class="thumbnail" style="background-image: url('${doc.data().image}') ;"></div>
-          <div class="productIndex">
-            <p class="brand">${doc.data().brand}</h5>
-            <p class="category">${doc.data().category}</p>
-            <p class="size">Size: ${doc.data().size}</p>
-            <p class="price">${priceToString(doc.data().price)} KRW</p>
-          </div>
-        </div>`;
-         
-            $(".productList").append(template);
-            $(".product").ready(function() {
-              $(".product").fadeIn(500);
-            })
-            
-          });
-        });
-      }
-        
+        })
     </script>
 
 </body>
