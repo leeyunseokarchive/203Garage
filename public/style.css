@@ -421,8 +421,20 @@ button:focus {
   .userInfoGrid {
     padding: 4rem 15% 4rem 15%;
     display: grid;
-    grid-template-columns: 1.6fr 1fr;
-    grid-template-rows: repeat(5, 1fr);
+    grid-template-columns: 1fr 1.5fr;
+    grid-template-rows: 1fr;
+  }
+
+  .myPageUserName, .myPageUserRegisterDate, #logoutBtn {
+    margin-bottom: 2rem;
+    grid-column-start: 1;
+    grid-column-end: 2;
+  }
+
+  .myPageProducts {
+    grid-column-start: 2;
+    grid-column-end: 3;
+
   }
 
 }
@@ -434,11 +446,47 @@ button:focus {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: auto;
+    gap: 2rem;
   }
 
 }
 
 .myPageUserName {
+  height: fit-content;
   font-size: 2rem;
   font-weight: 700;
+}
+
+.myPageUserRegisterDate {
+  height: fit-content;
+}
+
+.myPageProducts {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  gap: 2rem;
+}
+
+.myPageProducts .product {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.myPageProducts .product .myPageProductIndex {
+  margin-left: 1rem;
+}
+
+.myPageProductThumbnail {
+  width: 10rem;
+  height: 10rem;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: white;
+}
+
+#logoutBtn {
+  width: 10rem;
 }

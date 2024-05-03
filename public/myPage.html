@@ -1,103 +1,160 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=0">
-    <title>203Garage｜the vintage store</title>
-    <meta name="description" content="203Garage｜Detail Page">
-    <meta name="keywords" content="vintage, 빈티지샵, 빈티지, 중고매장, 중고 옷 팔기">
 
-    <meta property="og:type" content="website">
-    <!--
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=0">
+  <title>203Garage｜the vintage store</title>
+  <meta name="description" content="203Garage｜Detail Page">
+  <meta name="keywords" content="vintage, 빈티지샵, 빈티지, 중고매장, 중고 옷 팔기">
+
+  <meta property="og:type" content="website">
+  <!--
     <meta property="og:url" content="https://example.com/page.html">
     -->
-    <meta property="og:title" content="203Garage｜the vintage store">
-    <!--
+  <meta property="og:title" content="203Garage｜the vintage store">
+  <!--
         <meta property="og:image" content="https://example.com/image.jpg">
     -->
-    <meta property="og:description" content="203Garage｜My Page">
-    <meta property="og:site_name" content="203Garage｜the vintage store">
-    <meta property="og:locale" content="ko_KR">
+  <meta property="og:description" content="203Garage｜My Page">
+  <meta property="og:site_name" content="203Garage｜the vintage store">
+  <meta property="og:locale" content="ko_KR">
 
-    <link rel="icon" href="data:,">
-    <link rel="stylesheet" href="./reset.css">
-    <link rel="stylesheet" href="./style.css">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./reset.css">
+  <link rel="stylesheet" href="./style.css">
 
-    <script src="./zoomDisabler.js" defer></script>
+  <script src="./zoomDisabler.js" defer></script>
 </head>
-<body>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
-    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+<body>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-storage.js"></script>
 
   <script>
     const firebaseConfig = {
-        apiKey: "AIzaSyCyOKfpP4iWe6ruzCZdlFU-A1_M6-o_4ZU",
-        authDomain: "garage-a3390.firebaseapp.com",
-        projectId: "garage-a3390",
-        storageBucket: "garage-a3390.appspot.com",
-        messagingSenderId: "701651792962",
-        appId: "1:701651792962:web:3db7b2ce426ebb878169db"
-        };
+      apiKey: "AIzaSyCyOKfpP4iWe6ruzCZdlFU-A1_M6-o_4ZU",
+      authDomain: "garage-a3390.firebaseapp.com",
+      projectId: "garage-a3390",
+      storageBucket: "garage-a3390.appspot.com",
+      messagingSenderId: "701651792962",
+      appId: "1:701651792962:web:3db7b2ce426ebb878169db"
+    };
 
-        // initialize Firebase
-      firebase.initializeApp(firebaseConfig);
+    // initialize Firebase
+    firebase.initializeApp(firebaseConfig);
   </script>
 
-    <!--noise Background-->
-    <div class="background"></div>
+  <!--noise Background-->
+  <div class="background"></div>
 
-    <!--nav Bar-->
-    <div id="nav"></div>
-    <script>
-      $("#nav").load("nav.html");
-    </script>
+  <!--nav Bar-->
+  <div id="nav"></div>
+  <script>
+    $("#nav").load("nav.html");
+  </script>
 
-    <!--protection Margin-->
-    <div class="protMarginTop"></div>
-    <div class="protMarginBottom"></div>
+  <!--protection Margin-->
+  <div class="protMarginTop"></div>
+  <div class="protMarginBottom"></div>
 
-    <!--container-->
-    <div class="container">
+  <!--container-->
+  <div class="container">
 
-      <div class="userInfoGrid">
-        <div class="myPageUserName">userName</div>
-        <div class="myPageUserRegisterDate">Registered on 05 / 01 / 2024</div>
-        <button class="detailBtn" id="logoutBtn">logout</button>
+    <div class="userInfoGrid">
+      <div class="myPageUserName"></div>
+      <div class="myPageUserRegisterDate"></div>
+      <div class="myPageProducts">
+        <p style="font-size: 1.3rem;
+        font-weight: 700;">My Products</p>
+
+
+
       </div>
-
+      <button class="detailBtn" id="logoutBtn">logout</button>
     </div>
 
-    <script>
-      const db = firebase.firestore();
+  </div>
 
-      function priceToString(price) {
+  <script>
+    const db = firebase.firestore();
+    var myUid = JSON.parse(localStorage.getItem('user')).uid;
+
+    function priceToString(price) {
       return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-      }
+    }
 
-      // detail Loading Method
-      var queryStream = new URLSearchParams(window.location.search);
+    if (localStorage.getItem('user')) {
 
-      db.collection("product")
-        .doc(queryStream.get("id"))
+      // infomation Load Method
+      db.collection("user")
+        .doc(JSON.parse(localStorage.getItem('user')).uid)
         .get()
         .then((result) => {
           console.log(result.data());
 
-          $(".detailImage").css("background-image", `url(${result.data().image})`);
-          $(".productDetailBrand").html(result.data().brand);
-          $(".productDetailSellerName").html("Seller name: "+result.data().sellerName);
-          $(".productDetailCategory").html("Category: "+result.data().category);
-          $(".productDetailSize").html("Size: "+result.data().size);
-          $(".productDetailDetail").html(result.data().detail);
-          $(".productDetailPrice").html(priceToString(result.data().price)+" KRW");
+          $(".myPageUserName").html(result.data().name);
+          $(".myPageUserRegisterDate").html("Register on : " + result.data().date.toDate().toLocaleDateString());
 
         })
-    </script>
+
+      // logout Method
+      $("#logoutBtn").click(function () {
+        firebase
+          .auth()
+          .signOut()
+          .then((result) => {
+            localStorage.removeItem("user");
+            window.location.href = "./index.html";
+          })
+          .catch((error) => console.log(error));
+      });
+
+    }
+    else {
+
+      console.log("You have to login :(");
+      window.location.href = "./index.html";
+
+    }
+
+    db.collection("product").where("sellerUid", "==", myUid).orderBy("date", "desc")
+      .get()
+      .then((result) => {
+        result.forEach((doc) => {
+          console.log(doc.data());
+          var template = `
+          
+          <div class="product" OnClick="$('.container').fadeOut(500, function() {
+          window.location.href = './detail.html?id=${doc.id}';
+       }); " style="display: none; cursor:pointer;">
+          <div class="myPageProductThumbnail" style="background-image: url('${doc.data().image}') ;"></div>
+          <div class="myPageProductIndex">
+            <p class="brand">${doc.data().brand}</h5>
+            <p class="category">${doc.data().category}</p>
+            <p class="size">Size: ${doc.data().size}</p>
+            <p class="price">${priceToString(doc.data().price)} KRW</p>
+          </div>
+        </div>
+          
+          `;
+
+          $(".myPageProducts").append(template);
+          $(".product").ready(function () {
+            $(".product").fadeIn(500);
+          })
+
+        });
+      });
+
+
+  </script>
 
 </body>
+
 </html>
