@@ -70,12 +70,6 @@
 
         <div class="centerContainer">
 
-          <p class="question">Photo</p>
-          <input class="form1" type="file" name="image" id="image" accept="image/*" onchange="setThumbnail(event);" style="display: none;" />
-          <label for="image">
-            <div class="form1"><p class="fileName" style="position: relative; top: 0.3rem; left: 0.2rem; color: gray;">Choose file</p></div>
-          </label>
-
           <p class="question">Brand</p>
           <input list="brandList" type="text" class="form1" id="brand" placeholder="Ex) Nike" />
             <datalist id="brandList">
@@ -136,22 +130,6 @@
     </div>
 
     <script>
-    // show file thumbnail method
-    var img = document.createElement("img");
-    
-    function setThumbnail(event) {
-        var reader = new FileReader();
-        
-        reader.onload = function(event) {
-          $(".thumbnail").remove();
-          img = document.createElement("img");
-          img.setAttribute("class", "thumbnail");
-          img.setAttribute("src", event.target.result);
-          document.querySelector("div#imageContainer").appendChild(img);
-        };
-
-        reader.readAsDataURL(event.target.files[0]);
-      }
     
       const db = firebase.firestore();
       const storage = firebase.storage();
@@ -175,11 +153,7 @@
 
        // uploading method
        $("#upload").click(function () {
-
-        if ($("#image").get(0).files.length === 0) {
-          alert("Please upload a picture of this product :(");
-        }
-        else if ($("#brand").val().trim() == "") {
+        if ($("#brand").val().trim() == "") {
           alert("Please tell us your brand for this product :(");
         }
         else if ($("#size").val().trim() == "")
@@ -188,16 +162,10 @@
         alert("Please tell us your price for this product :(");
 
         else {
-          
-        var file = document.querySelector("#image").files[0];
-        var storageRef = storage.ref();
-        var saveRoute = storageRef.child("image/" + file.name);
-        var uploading = saveRoute.put(file);
 
         db.collection("product")
           .doc(queryStream.get("id"))
           .update({
-            image: $("#title").val(),
             brand: $("#brand").val(),
             category: $("#category").val(),
             size: $("#size").val(),
