@@ -112,21 +112,21 @@
         $(".productDetailPrice").html(priceToString(result.data().price) + " KRW");
 
         // according to login or not, show or hide detail btn 
-        if (localStorage.getItem('user')) {
-
+        if (localStorage.getItem('user')) { // login
           if (result.data().sellerUid == JSON.parse(localStorage.getItem('user')).uid) {
-            console.log("Same");
-            $("#editBtn, #delectBtn").show();
-            
+            $("#editBtn, #delectBtn").show(); // seller
+            $("#editBtn").click(function () {
+              $('.container').fadeOut(500, function () {
+                window.location.href = `./edit.html?id=${queryStream.get("id")}`;
+              });
+            });
           }
           else {
-            console.log("Nah");
-            $("#chatBtn").show();
+            $("#chatBtn").show(); // buyer
           }
         }
-
         else {
-          $("#visitorBtn").show();
+          $("#visitorBtn").show(); // not login
         }
       })
   </script>
