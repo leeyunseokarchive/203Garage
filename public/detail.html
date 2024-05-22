@@ -78,24 +78,14 @@
       <div class="productDetailPrice">KRW</div>
 
       <div class="detailBtns">
-        <button class="detailBtn" id="visitorBtn">login to chat to the seller</button>
-        <button class="detailBtn" id="chatBtn">Chat</button>
-        <button class="detailBtn" id="editBtn">Edit</button>
-        <button class="detailBtn" id="delectBtn">Delect</button>
+        <button class="detailBtn" id="visitorBtn" style="display: none;">login to chat to the seller</button>
+        <button class="detailBtn" id="chatBtn" style="display: none;">Chat</button>
+        <button class="detailBtn" id="editBtn" style="display: none;">Edit</button>
+        <button class="detailBtn" id="delectBtn" style="display: none;">Delect</button>
       </div>
     </div>
 
   </div>
-
-  <script>
-    // according to login or not, show or hide detail btn 
-    if (localStorage.getItem('user')) {
-      $("#visitorBtn").hide();
-    }
-    else {
-      $("#chatBtn, #editBtn, #delectBtn").hide();
-    }
-  </script>
 
   <script>
     const db = firebase.firestore();
@@ -121,6 +111,23 @@
         $(".productDetailDetail").html(result.data().detail);
         $(".productDetailPrice").html(priceToString(result.data().price) + " KRW");
 
+        // according to login or not, show or hide detail btn 
+        if (localStorage.getItem('user')) {
+
+          if (result.data().sellerUid == JSON.parse(localStorage.getItem('user')).uid) {
+            console.log("Same");
+            $("#editBtn, #delectBtn").show();
+            
+          }
+          else {
+            console.log("Nah");
+            $("#chatBtn").show();
+          }
+        }
+
+        else {
+          $("#visitorBtn").show();
+        }
       })
   </script>
 
