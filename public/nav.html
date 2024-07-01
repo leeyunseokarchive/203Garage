@@ -1,59 +1,26 @@
-<nav id="nav">
-    <a class="navLogo">203Garage</a>
-      <ul class="menu">
-        <li class="genre" onclick="$('.container').fadeOut(500, function() { window.location.href = './index.html?id=All'; });">All</li>
-        <li class="genre" onclick="$('.container').fadeOut(500, function() { window.location.href = './index.html?id=Outer'; });">Outer</li>
-        <li class="genre" onclick="$('.container').fadeOut(500, function() { window.location.href = './index.html?id=Top'; });">Top</li>
-        <li class="genre" onclick="$('.container').fadeOut(500, function() { window.location.href = './index.html?id=Bottom'; });">Bottom</li>
-        <li class="genre" onclick="$('.container').fadeOut(500, function() { window.location.href = './index.html?id=Shoes'; });">Shoes</li>
-        <li class="genre" onclick="$('.container').fadeOut(500, function() { window.location.href = './index.html?id=Acc'; });">Acc</li>
-        <!-- <li class="genre" id="uploadPageMoveBtn"><a href="./upload.html" >Upload</a></li> -->
-        <li class="genre" id="uploadPageMoveBtn">Upload</li>
-      </ul>
-    <a class="footer" id="loginPageMoveBtn">Login</a>
-    <a class="footer" id="myPageMoveBtn"></a>
+<nav>
+  <img onclick="openNav()" src="./images/menuIcon.svg" />
 </nav>
 
-<script>
-      // according to login or not, show or hide login btn 
-      if(localStorage.getItem('user')) {
-        $("#loginPageMoveBtn").hide();
-        $('#myPageMoveBtn').html(JSON.parse(localStorage.getItem('user')).displayName);
-      }
-      else {
-        $("#uploadPageMoveBtn, #myPageMoveBtn").hide();
-      }
-</script>
+<div id="mySidenav" class="sidenav">
+  <img href="javascript:void(0)" class="closebtn" onclick="closeNav()" src="./images/menuCloseIcon.svg" />
+  <a href='./index.html?id=All'>All</a>
+  <a href='./index.html?id=Outer'>아우터</a>
+  <a href='./index.html?id=Top'>상의</a>
+  <a href='./index.html?id=Bottom'>하의</a>
+  <a href='./index.html?id=Shoes'>신발</a>
+  <a href='./index.html?id=Acc'>악세사리</a>
+  <a href='./index.html?id=Acc'>장바구니</a>
+  <a href='./index.html?id=Acc'>주문조회</a>
+  <a href='./index.html?id=Acc'>About</a>
+</div>
 
 <script>
-  // page Move
-  $('document').ready(function() {
-    $(".container").fadeIn(500);
-  })
+  function openNav() {
+    $("#mySidenav").css("width", "100%");
+  }
 
-
- $("#uploadPageMoveBtn").click(function () {
- $(".container").fadeOut(500, function() {
-    window.location.href = "./upload.html";
- }); 
- })
- 
- $(".navLogo").click(function () {
- $(".container").fadeOut(500, function() {
-    window.location.href = "./index.html";
- }); 
- })
-
- $("#myPageMoveBtn").click(function () {
- $(".container").fadeOut(500, function() {
-    window.location.href = "./myPage.html";
- }); 
- })
-
- $("#loginPageMoveBtn").click(function () {
- $(".container").fadeOut(500, function() {
-    window.location.href = "./login.html";
- }); 
- })
-
+  function closeNav() {
+    $("#mySidenav").css("width", "0");
+  }
 </script>

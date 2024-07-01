@@ -1,58 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap');
-
-@font-face {
-  font-family: 'Noto Sans KR';
-  font-style: normal;
-  font-weight:
-    100;
-  src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.woff2) format('woff2'), url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.woff) format('woff'), url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.otf) format('opentype');
-}
-
-@font-face {
-  font-family: 'Noto Sans KR';
-  font-style:
-    normal;
-  font-weight: 300;
-  src:
-    url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Light.woff2) format('woff2'), url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Light.woff) format('woff'), url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Light.otf) format('opentype');
-}
-
-@font-face {
-  font-family: 'Noto Sans KR';
-  font-style:
-    normal;
-  font-weight: 400;
-  src:
-    url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.woff2) format('woff2'), url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.woff) format('woff'), url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.otf) format('opentype');
-}
-
-@font-face {
-  font-family: 'Noto Sans KR';
-  font-style:
-    normal;
-  font-weight: 500;
-  src:
-    url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Medium.woff2) format('woff2'), url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Medium.woff) format('woff'), url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Medium.otf) format('opentype');
-}
-
-@font-face {
-  font-family: 'Noto Sans KR';
-  font-style:
-    normal;
-  font-weight: 700;
-  src:
-    url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.woff2) format('woff2'), url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.woff) format('woff'), url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.otf) format('opentype');
-}
-
-@font-face {
-  font-family: 'Noto Sans KR';
-  font-style:
-    normal;
-  font-weight: 900;
-  src:
-    url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.woff2) format('woff2'), url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.woff) format('woff'), url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.otf) format('opentype');
-}
-
+html,
 body,
 h1,
 h2,
@@ -62,431 +8,105 @@ h5,
 h6,
 input,
 textarea,
+ul,
+ol,
+li,
 select {
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: "DotGothic16", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: #f8f8f8;
 }
 
 html {
-  height: 100%;
-  width: 100%;
-  font-size: 62.5%;
-  /* 1rem을 10px로 변환 (원래는 16px) */
-  -moz-text-size-adjust: none;
-  -webkit-text-size-adjust: none;
-  text-size-adjust: none;
+  overscroll-behavior: none;
+  background-color: black;
 }
 
 body {
-  height: 100%;
-  width: 100%;
-  min-width: 300px;
-  -ms-overflow-style: none;
-  overflow: hidden;
-  touch-action: none;
-}
-
-.background {
-  opacity: 50%;
-  z-index: -2;
-  position: fixed;
-  top: 2rem;
-  left: 0;
-  width: 100%;
-  height: calc(100dvh - 4rem);
-  ;
-  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAUVBMVEWFhYWDg4N3d3dtbW17e3t1dXWBgYGHh4d5eXlzc3OLi4ubm5uVlZWPj4+NjY19fX2JiYl/f39ra2uRkZGZmZlpaWmXl5dvb29xcXGTk5NnZ2c8TV1mAAAAG3RSTlNAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEAvEOwtAAAFVklEQVR4XpWWB67c2BUFb3g557T/hRo9/WUMZHlgr4Bg8Z4qQgQJlHI4A8SzFVrapvmTF9O7dmYRFZ60YiBhJRCgh1FYhiLAmdvX0CzTOpNE77ME0Zty/nWWzchDtiqrmQDeuv3powQ5ta2eN0FY0InkqDD73lT9c9lEzwUNqgFHs9VQce3TVClFCQrSTfOiYkVJQBmpbq2L6iZavPnAPcoU0dSw0SUTqz/GtrGuXfbyyBniKykOWQWGqwwMA7QiYAxi+IlPdqo+hYHnUt5ZPfnsHJyNiDtnpJyayNBkF6cWoYGAMY92U2hXHF/C1M8uP/ZtYdiuj26UdAdQQSXQErwSOMzt/XWRWAz5GuSBIkwG1H3FabJ2OsUOUhGC6tK4EMtJO0ttC6IBD3kM0ve0tJwMdSfjZo+EEISaeTr9P3wYrGjXqyC1krcKdhMpxEnt5JetoulscpyzhXN5FRpuPHvbeQaKxFAEB6EN+cYN6xD7RYGpXpNndMmZgM5Dcs3YSNFDHUo2LGfZuukSWyUYirJAdYbF3MfqEKmjM+I2EfhA94iG3L7uKrR+GdWD73ydlIB+6hgref1QTlmgmbM3/LeX5GI1Ux1RWpgxpLuZ2+I+IjzZ8wqE4nilvQdkUdfhzI5QDWy+kw5Wgg2pGpeEVeCCA7b85BO3F9DzxB3cdqvBzWcmzbyMiqhzuYqtHRVG2y4x+KOlnyqla8AoWWpuBoYRxzXrfKuILl6SfiWCbjxoZJUaCBj1CjH7GIaDbc9kqBY3W/Rgjda1iqQcOJu2WW+76pZC9QG7M00dffe9hNnseupFL53r8F7YHSwJWUKP2q+k7RdsxyOB11n0xtOvnW4irMMFNV4H0uqwS5ExsmP9AxbDTc9JwgneAT5vTiUSm1E7BSflSt3bfa1tv8Di3R8n3Af7MNWzs49hmauE2wP+ttrq+AsWpFG2awvsuOqbipWHgtuvuaAE+A1Z/7gC9hesnr+7wqCwG8c5yAg3AL1fm8T9AZtp/bbJGwl1pNrE7RuOX7PeMRUERVaPpEs+yqeoSmuOlokqw49pgomjLeh7icHNlG19yjs6XXOMedYm5xH2YxpV2tc0Ro2jJfxC50ApuxGob7lMsxfTbeUv07TyYxpeLucEH1gNd4IKH2LAg5TdVhlCafZvpskfncCfx8pOhJzd76bJWeYFnFciwcYfubRc12Ip/ppIhA1/mSZ/RxjFDrJC5xifFjJpY2Xl5zXdguFqYyTR1zSp1Y9p+tktDYYSNflcxI0iyO4TPBdlRcpeqjK/piF5bklq77VSEaA+z8qmJTFzIWiitbnzR794USKBUaT0NTEsVjZqLaFVqJoPN9ODG70IPbfBHKK+/q/AWR0tJzYHRULOa4MP+W/HfGadZUbfw177G7j/OGbIs8TahLyynl4X4RinF793Oz+BU0saXtUHrVBFT/DnA3ctNPoGbs4hRIjTok8i+algT1lTHi4SxFvONKNrgQFAq2/gFnWMXgwffgYMJpiKYkmW3tTg3ZQ9Jq+f8XN+A5eeUKHWvJWJ2sgJ1Sop+wwhqFVijqWaJhwtD8MNlSBeWNNWTa5Z5kPZw5+LbVT99wqTdx29lMUH4OIG/D86ruKEauBjvH5xy6um/Sfj7ei6UUVk4AIl3MyD4MSSTOFgSwsH/QJWaQ5as7ZcmgBZkzjjU1UrQ74ci1gWBCSGHtuV1H2mhSnO3Wp/3fEV5a+4wz//6qy8JxjZsmxxy5+4w9CDNJY09T072iKG0EnOS0arEYgXqYnXcYHwjTtUNAcMelOd4xpkoqiTYICWFq0JSiPfPDQdnt+4/wuqcXY47QILbgAAAABJRU5ErkJggg==);
-  background-color: white;
-}
-
-.protMarginTop {
-  background-image: url(data:image/png;base64,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);
-  background-color: white;
-  opacity: 50%;
-  position: fixed;
-  top: 0rem;
-  left: 0rem;
-  z-index: 3;
-  height: 2rem;
-  width: 100%;
-}
-
-.protMarginBottom {
-  background-image: url(data:image/png;base64,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);
-  background-color: white;
-  opacity: 50%;
-  position: fixed;
-  bottom: 0rem;
-  left: 0rem;
-  z-index: 3;
-  height: 2rem;
-  width: 100%;
-}
-
-#nav {
-  position: fixed;
-  right: 0px;
-  top: 2rem;
-  width: 4rem;
-  height: calc(100dvh - 4rem);
-  border-left: solid 0.1rem;
-  writing-mode: vertical-rl;
-  text-orientation: sideways;
-  display: flex;
-  align-items: center;
-  white-space: nowrap;
-  font-family: "Noto Serif", serif;
-  font-weight: 500;
-  font-style: normal;
-}
-
-.navLogo {
-  font-size: 1rem;
-  cursor: pointer;
-}
-
-.menu {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-  height: 100%;
-  float: left;
-}
-
-.genre {
-  display: inline-block;
-  text-align: center;
-  margin-bottom: 1rem;
-  cursor: pointer;
-}
-
-#uploadPageMoveBtn {
-  margin-top: 1rem;
-  cursor: pointer;
-}
-
-.footer {
-  font-size: 1rem;
-  margin-top: auto;
-  cursor: pointer;
-}
-
-.container {
-  display: none;
+  touch-action: pan-y, pan-x;
   position: absolute;
-  top: 0rem;
-  left: 2rem;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  min-width: 340px;
   height: 100%;
-  width: calc(100% - 6rem);
-  overflow-y: scroll;
 }
 
-.verticalLine {
-  border-right: solid 0.1rem;
-  width: 50%;
-  height: 35%;
+nav {
+  display: block;
+  width: 100%;
+  height: auto;
+  padding: 1rem;
 }
 
-.loginRegisterContainer {
-  margin: 0 auto;
+nav img {
+  display: block;
+  margin-left: auto;
+}
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  background-color: black;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 56px;
+}
+
+.sidenav a {
+  padding: 1rem 1rem 1rem 2rem;
+  text-decoration: none;
+  font-size: 1rem;
+  color: #f8f8f8;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #c0c0c0;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 1rem;
+}
+
+header {
+  padding: 1rem;
+}
+
+section {
+  margin: 1rem;
+  padding: 1rem 0 1rem;
+  border-top: 1px dashed #f8f8f8;
+  border-bottom: 1px dashed #f8f8f8;
+}
+
+.title {
+  font-size: 1.5rem;
+  line-height: 1;
+  font-weight: 900;
+  letter-spacing: 0.1rem;
+  margin-bottom: 1rem;
+}
+
+footer {
+  padding: 1rem;
   text-align: center;
 }
 
-.swapBtn {
-  font-family: "Noto Serif", serif;
-  font-weight: 500;
-  font-style: normal;
-  margin-top: 2rem;
-}
-
-.loginTitle {
-  font-family: "Noto Serif", serif;
-  font-weight: 800;
-  font-style: normal;
-  font-size: 3rem;
-  margin-bottom: 1rem;
-}
-
-input,
-input:focus,
-input:active,
-textarea,
-select {
-  font-family: "Noto Serif", serif;
-  border: 0.1rem solid black;
-  color: black;
-  font-size: 1rem;
-  width: 15rem;
-  height: 2rem;
-  outline: none;
-  box-shadow: none;
-  background-color: transparent;
-  resize: none;
-}
-
-.form1 {
-  font-family: "Noto Serif", serif;
-  border: 0.1rem solid black;
-  color: black;
-  font-size: 1rem;
-  width: 15rem;
-  height: 2rem;
-  outline: none;
-  box-shadow: none;
-  background-color: transparent;
-}
-
-textarea {
-  height: 10rem;
-}
-
-button,
-button:active,
-button:focus {
-  font-family: "Noto Serif", serif;
-  outline: none;
-  border: 0.1rem solid black;
-  color: black;
-  border-radius: 0rem;
-  box-shadow: none;
-  width: 15rem;
-  height: 2rem;
-  font-size: 1rem;
-  background-color: transparent;
-  cursor: pointer;
-}
-
-/* hoverable device only */
-@media (hover: hover) {
-  button:hover {
-    background-color: rgba(0, 0, 0, 0.2);
-  }
-}
-
-.inp {
-  margin-bottom: 0.5rem;
-}
-
-.productList {
-  padding: 4rem 0 4rem 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  grid-template-rows: auto;
-  gap: 2rem;
-  row-gap: 4rem;
-}
-
-.product {
-  margin: 0 auto;
-  width: fit-content;
-  height: fit-content;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.thumbnail {
-  max-width: 20rem;
-  width: 20rem;
-  height: 20rem;
-  margin-bottom: 1rem;
-
-  background-position: 50% 50%;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-color: white;
-}
-
-.imageContainer {
-  max-width: 20rem;
-}
-
-.productIndex {
-  font-family: "Noto Sans KR, sans-serif";
-  font-weight: 500;
-  font-style: normal;
-  font-size: 1.3rem;
-}
-
-.product .brand {
-  font-weight: 700;
-  font-size: 1.8rem;
-}
-
-.product .category,
-.product .size {
-  color: #444;
-}
-
-.product .price {
-  font-weight: 600;
-  font-size: 1.3rem;
-}
-
-.uploadForm {
-  margin: 0 auto;
-  margin-top: 10rem;
-  padding-bottom: 10rem;
-  width: fit-content;
-}
-
-.centerContainer {
-  margin: 0 auto;
-  width: fit-content;
-}
-
-.question {
-  font-size: 1.3rem;
-  font-weight: 500;
-  margin: 0.5rem;
-}
-
-@media (min-width: 650px) {
-
-  .detailGrid {
-    padding: 4rem 15% 4rem 15%;
-    display: grid;
-    grid-template-columns: 1.6fr 1fr;
-    grid-template-rows: repeat(6, 1fr);
-  }
-
-  .detailImageContainer {
-    padding-right: 4rem;
-    grid-row-start: 1;
-    grid-row-end: 8;
-  }
-
-}
-
-@media (max-width: 649px) {
-
-  .detailGrid {
-    padding: 4rem 15% 4rem 15%;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
-  }
-
-  .detailImageContainer {
-    margin-bottom: 1rem;
-  }
-}
-
-.detailImage {
-  width: 100%;
-  padding-top: 100%;
-  background-position: 50% 50%;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-color: white;
-}
-
-.productDetailBrand {
+footer p {
+  position: relative;
+  left: 2px;
   font-size: 2rem;
-  font-weight: 700;
-}
-
-.productDetailSellerName,
-.productDetailCategory,
-.productDetailSize,
-.productDetailDetail {
-  font-size: 1rem;
-  margin-top: 1rem;
-  color: #444;
-}
-
-.productDetailDetail {
-  color: black;
-}
-
-.productDetailPrice {
-  font-size: 1.8rem;
-  font-weight: 500;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
-
-.detailBtns {
-  padding: 0 2rem 0;
-}
-
-.detailBtn,
-.detailBtn:active,
-.detailBtn:focus {
-  background-color: transparent;
-  width: 100%;
-  margin-bottom: 1rem;
-}
-
-@media (min-width: 650px) {
-
-  .userInfoGrid {
-    padding: 4rem 15% 4rem 15%;
-    display: grid;
-    grid-template-columns: 1fr 1.5fr;
-    grid-template-rows: 1fr;
-  }
-
-  .myPageUserName, .myPageUserRegisterDate, #logoutBtn {
-    margin-bottom: 2rem;
-    grid-column-start: 1;
-    grid-column-end: 2;
-  }
-
-  .myPageProducts {
-    grid-column-start: 2;
-    grid-column-end: 3;
-
-  }
-
-}
-
-@media (max-width: 649px) {
-  /** mobile */
-  .userInfoGrid {
-    padding: 4rem 15% 4rem 15%;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
-    gap: 2rem;
-  }
-
-}
-
-.myPageUserName {
-  height: fit-content;
-  font-size: 2rem;
-  font-weight: 700;
-}
-
-.myPageUserRegisterDate {
-  height: fit-content;
-}
-
-.myPageProducts {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: auto;
-  gap: 2rem;
-}
-
-.myPageProducts .product {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-}
-
-.myPageProducts .product .myPageProductIndex {
-  margin-left: 1rem;
-}
-
-.myPageProductThumbnail {
-  width: 10rem;
-  height: 10rem;
-  background-position: 50% 50%;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-color: white;
-}
-
-#logoutBtn {
-  width: 10rem;
+  font-family: "Libre Barcode 128", system-ui;
+  font-weight: 400;
+  font-style: normal;
 }
