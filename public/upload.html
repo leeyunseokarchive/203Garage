@@ -35,30 +35,44 @@
             <span id="title">업로드</span>
         </div>
 
-        <div>
+        <div class="uploadForm" style="display: flex; flex-direction: column;">
             <p>Image</p>
             <input type="file" name="uploadFile" id="uploadFile" multiple>
             <div id="preview"></div>
 
-            <p>Available</p>
+            <p style="margin-top: 1rem;">Available</p>
             <label class="container">
                 <input type="checkbox" id="available" />
                 <div class="checkmark"></div>
             </label>
 
-            <p>Brand</p>
+            <p style="margin-top: 1rem;">Brand</p>
             <input style="width: 10rem; border: 2px solid #f8f8f8;" type="text" id="brand" />
-            <p>Category</p>
-            <input style="width: 10rem; border: 2px solid #f8f8f8;" type="text" id="category" />
-            <p>Detail</p>
+
+            <p style="margin-top: 1rem;">Category</p>
+            <select id="Category">
+                <option value="Outer" selected>Outer</option>
+                <option value="Top" selected>Top</option>
+                <option value="Bottom" selected>Bottom</option>
+                <option value="Shoes" selected>Shoes</option>
+                <option value="Acc" selected>Acc</option>
+            </select>
+
+            <p style="margin-top: 1rem;">Detail</p>
             <textarea style="width: 10rem; border: 2px solid #f8f8f8;" type="text" id="detail"></textarea>
-            <p>Price</p>
-            <input style="width: 10rem; border: 2px solid #f8f8f8;" type="text" id="price" />
 
-            <p>Size</p>
+            <p style="margin-top: 1rem;">Price</p>
+            <input style="width: 10rem; border: 2px solid #f8f8f8;" type="number" id="price" />
 
-            <button class="normBtn" id="uploadBtn">Upload</button>
+            <p style="margin-top: 1rem;">Size</p>
+            <div>
+                <input style="width: 10rem; border: 2px solid #f8f8f8;" type="text" name="input_array[]" />
+                <button class="normBtn" style="width: 30px;" id="addSizeBtn">+</button>
+            </div>
+
+
         </div>
+        <button class="normBtn" id="uploadBtn" style="margin-top: 1.5rem;">Upload</button>
 
 
     </section>
@@ -66,6 +80,16 @@
     <div id="footer"></div>
 
     <script>
+        $("#addSizeBtn").click(function (e) {
+            e.preventDefault(); // 페이지 리로드 방지
+            $(".uploadForm").append(`
+            <div style="margin-top: 0.5rem">
+                <input style="width: 10rem; border: 2px solid #f8f8f8;" type="text" name="input_array[]" />
+                <button class="normBtn" style="width: 30px;" onclick="$(this).parent().remove();">x</button>
+            </div>
+                `);
+        })
+
         const firebaseConfig = {
             apiKey: "AIzaSyCyOKfpP4iWe6ruzCZdlFU-A1_M6-o_4ZU",
             authDomain: "garage-a3390.firebaseapp.com",
@@ -118,13 +142,13 @@
             }
 
             function preview(arr) {
-                let arrInt = 0;
+                let arrIndex = 0;
 
                 arr.forEach(function (f) {
-                    arrInt ++;
+                    arrIndex++;
                     //div에 이미지 추가
                     var str = '<div style="display: inline-flex; padding: 10px;"><li>';
-                    str += '<span>' + arrInt + '</span><br>';
+                    str += '<span>' + arrIndex + '</span><br>';
 
                     //이미지 파일 미리보기
                     if (f.type.match('image.*')) {
