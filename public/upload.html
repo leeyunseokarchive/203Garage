@@ -42,7 +42,7 @@
 
             <p style="margin-top: 1rem;">Available</p>
             <label class="container">
-                <input type="checkbox" id="available" />
+                <input type="checkbox" id="available" checked/>
                 <div class="checkmark"></div>
             </label>
 
@@ -50,12 +50,12 @@
             <input style="width: 10rem; border: 2px solid #f8f8f8;" type="text" id="brand" />
 
             <p style="margin-top: 1rem;">Category</p>
-            <select id="Category">
+            <select id="category">
                 <option value="Outer" selected>Outer</option>
-                <option value="Top" selected>Top</option>
-                <option value="Bottom" selected>Bottom</option>
-                <option value="Shoes" selected>Shoes</option>
-                <option value="Acc" selected>Acc</option>
+                <option value="Top">Top</option>
+                <option value="Bottom" >Bottom</option>
+                <option value="Shoes">Shoes</option>
+                <option value="Acc">Acc</option>
             </select>
 
             <p style="margin-top: 1rem;">Detail</p>
@@ -64,10 +64,13 @@
             <p style="margin-top: 1rem;">Price</p>
             <input style="width: 10rem; border: 2px solid #f8f8f8;" type="number" id="price" />
 
+            <p style="margin-top: 1rem;">Quality</p>
+            <input style="width: 10rem; border: 2px solid #f8f8f8;" type="number" id="quality" />
+
             <p style="margin-top: 1rem;">Size</p>
             <div>
                 <input style="width: 10rem; border: 2px solid #f8f8f8;" type="text" name="input_array[]" />
-                <button class="normBtn" style="width: 30px;" id="addSizeBtn">+</button>
+                <button class="normBtn" style="width: 30px; height: 30px;" id="addSizeBtn">+</button>
             </div>
 
 
@@ -85,7 +88,7 @@
             $(".uploadForm").append(`
             <div style="margin-top: 0.5rem">
                 <input style="width: 10rem; border: 2px solid #f8f8f8;" type="text" name="input_array[]" />
-                <button class="normBtn" style="width: 30px;" onclick="$(this).parent().remove();">x</button>
+                <button class="normBtn" style="width: 30px; height: 30px;" onclick="$(this).parent().remove();">x</button>
             </div>
                 `);
         })
@@ -165,6 +168,26 @@
                     }
                 });//arr.forEach
             }
+        });
+
+        $('#uploadBtn').click(function () {
+            var template = {
+                available: $('input[id=available]').is(':checked'),
+                brand: $('#brand').val(),
+                cartCount: 0,
+                category: $("#category :selected").val(),
+                date: new Date(),
+                detail: $('#detail').val(),
+                image: null,
+                price: Number($('#price').val()),
+                quality: Number($('#quality').val()),
+                size: null
+            }
+            db.collection('product').add(template).then((result) => {
+                alert("Upload Successed!");
+            }).catch((error) => {
+                alert("Upload Failed! : " + error);
+            })
         });
 
         $(function () {
