@@ -3,14 +3,11 @@
 *::after {
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
-  /* 1rem을 10px로 변환 (원래는 16px) */
 }
 
 html {
   height: 100%;
   width: 100%;
-  font-size: 62.5%;
-  /* 1rem을 10px로 변환 (원래는 16px) */
   -moz-text-size-adjust: none;
   -webkit-text-size-adjust: none;
   text-size-adjust: none;
