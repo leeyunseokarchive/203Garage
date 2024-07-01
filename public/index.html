@@ -13,6 +13,7 @@
   <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Libre+Barcode+128&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/neodgm/neodgm-pro-webfont@latest/neodgm_pro/style.css">
   <link rel="stylesheet" href="./reset.css">
   <link rel="stylesheet" href="./style.css">
   <script src="./zoomDisabler.js" defer></script>
@@ -41,6 +42,10 @@
   </header>
 
   <section>
+    <div class="title">
+      <span id="title">전체</span>
+    </div>
+
     <div class="productList"></div>
   </section>
 
@@ -96,6 +101,24 @@
         });
     }
     else {
+      switch (category) {
+        case "Outer":
+          $("#title").text("아우터");
+          break;
+        case "Top":
+          $("#title").text("상의");
+          break;
+        case "Bottom":
+          $("#title").text("하의");
+          break;
+        case "Shoes":
+          $("#title").text("신발");
+          break;
+        case "Acc":
+          $("#title").text("악세사리");
+          break;
+      }
+
       db.collection("product").where("category", "==", category).orderBy("date", "desc")
         .get()
         .then((result) => {

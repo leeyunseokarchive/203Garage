@@ -65,6 +65,7 @@ nav img {
   color: #f8f8f8;
   display: block;
   transition: 0.3s;
+  font-family: 'NeoDunggeunmo Pro';
 }
 
 .sidenav a:hover {
@@ -84,7 +85,7 @@ header {
 
 section {
   margin: 1rem;
-  padding: 2rem 0 2rem;
+  padding: 2rem 0 4rem;
   border-top: 1px dashed #f8f8f8;
   border-bottom: 1px dashed #f8f8f8;
 }
@@ -92,9 +93,9 @@ section {
 .title {
   font-size: 1.5rem;
   line-height: 1;
-  font-weight: 900;
-  letter-spacing: 0.1rem;
-  margin-bottom: 1rem;
+  font-weight: 500;
+  margin: 0 2rem 2rem;
+  font-family: 'NeoDunggeunmo Pro';
 }
 
 .productList {
@@ -128,7 +129,7 @@ section {
 }
 
 footer {
-  padding: 1rem;
+  padding: 1rem 1rem 3rem;
   text-align: center;
 }
 
