@@ -60,6 +60,7 @@ nav img {
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 56px;
+  padding-bottom: 10rem;
 }
 
 .sidenav a {

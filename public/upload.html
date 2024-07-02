@@ -42,7 +42,7 @@
 
             <p style="margin-top: 1rem;">Available</p>
             <label class="container">
-                <input type="checkbox" id="available" checked/>
+                <input type="checkbox" id="available" checked />
                 <div class="checkmark"></div>
             </label>
 
@@ -53,7 +53,7 @@
             <select id="category">
                 <option value="Outer" selected>Outer</option>
                 <option value="Top">Top</option>
-                <option value="Bottom" >Bottom</option>
+                <option value="Bottom">Bottom</option>
                 <option value="Shoes">Shoes</option>
                 <option value="Acc">Acc</option>
             </select>
@@ -69,8 +69,11 @@
 
             <p style="margin-top: 1rem;">Size</p>
             <div>
-                <input style="width: 10rem; border: 2px solid #f8f8f8;" type="text" name="input_array[]" />
-                <button class="normBtn" style="width: 30px; height: 30px;" id="addSizeBtn">+</button>
+                <input style="width: 10rem; border: 2px solid #f8f8f8;" type="text" class="sizeInput0" />
+                <button class="normBtn" style="width: 30px; height: 30px;" id="addSizeBtn"
+                    onclick="addSize()">+</button>
+                <button class="normBtn" id="delectSizeBtn" style="display:none; width: 30px; height: 30px;"
+                    onclick="delectSize()">-</button>
             </div>
 
 
@@ -83,15 +86,32 @@
     <div id="footer"></div>
 
     <script>
-        $("#addSizeBtn").click(function (e) {
-            e.preventDefault(); // 페이지 리로드 방지
+
+        const size = [];
+        var sizeArrLength = 1;
+
+        function addSize() {
             $(".uploadForm").append(`
-            <div style="margin-top: 0.5rem">
-                <input style="width: 10rem; border: 2px solid #f8f8f8;" type="text" name="input_array[]" />
-                <button class="normBtn" style="width: 30px; height: 30px;" onclick="$(this).parent().remove();">x</button>
-            </div>
-                `);
-        })
+            <input style="margin-top: 0.5rem; width: 10rem; border: 2px solid #f8f8f8;" type="text" class="sizeInput${sizeArrLength}" />
+            `);
+            sizeArrLength++;
+            $("#delectSizeBtn").show();
+            console.log(sizeArrLength);
+        }
+
+        function delectSize() {
+            sizeArrLength--;
+            $(".sizeInput" + sizeArrLength).remove();
+            if (sizeArrLength < 2) $("#delectSizeBtn").hide();
+            console.log(sizeArrLength);
+        }
+
+        function sizeArrResult() {
+            for (var i = 0; i < sizeArrLength; i++) {
+                size.push($(".sizeInput" + i).val());
+            }
+            return size;
+        }
 
         const firebaseConfig = {
             apiKey: "AIzaSyCyOKfpP4iWe6ruzCZdlFU-A1_M6-o_4ZU",
@@ -181,7 +201,7 @@
                 image: null,
                 price: Number($('#price').val()),
                 quality: Number($('#quality').val()),
-                size: null
+                size: sizeArrResult()
             }
             db.collection('product').add(template).then((result) => {
                 window.location.href = './index.html';
