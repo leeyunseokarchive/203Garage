@@ -26,13 +26,33 @@
 </head>
 
 <body>
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
-  <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-storage.js"></script>
+  <div id="nav" style="margin-bottom: 56px;"></div>
+
+  <section>
+
+    <div>
+      <div class="imageContainer">
+        <div class="productImage" id="mainImage" style="background-image: url(``)"></div>
+      </div>
+
+      <div class="available"></div>
+      <div class="quality"></div>
+      <div class="brand"></div>
+      <div class="category"></div>
+      <div class="size"></div>
+      <div class="detail"></div>
+      <div class="productDetailPrice">KRW</div>
+
+      <button class="normBtn" id="buyBtn">BUY</button>
+      <button class="normBtn" id="cartBtn">CART</button>
+
+      <div class="imageContainer" id="detailImageContainer"></div>
+    </div>
+
+  </section>
+
+  <div id="footer"></div>
 
   <script>
     const firebaseConfig = {
@@ -46,47 +66,12 @@
 
     // initialize Firebase
     firebase.initializeApp(firebaseConfig);
-  </script>
-
-  <!--noise Background-->
-  <div class="background"></div>
-
-  <!--nav Bar-->
-  <div id="nav"></div>
-  <script>
-    $("#nav").load("nav.html");
-  </script>
-
-  <!--protection Margin-->
-  <div class="protMarginTop"></div>
-  <div class="protMarginBottom"></div>
-
-  <!--container-->
-  <div class="container">
-
-    <div class="detailGrid">
-      <div class="detailImageContainer">
-        <div class="detailImage" style="background-image: url(``)"></div>
-      </div>
-      <div class="productDetailBrand"></div>
-      <div class="productDetailSellerName"></div>
-      <div class="productDetailCategory"></div>
-      <div class="productDetailSize"></div>
-      <div class="productDetailDetail"></div>
-      <div class="productDetailPrice">KRW</div>
-
-      <div class="detailBtns">
-        <button class="detailBtn" id="visitorBtn" style="display: none;">login to chat to the seller</button>
-        <button class="detailBtn" id="chatBtn" style="display: none;">Chat</button>
-        <button class="detailBtn" id="editBtn" style="display: none;">Edit</button>
-        <button class="detailBtn" id="delectBtn" style="display: none;">Delect</button>
-      </div>
-    </div>
-
-  </div>
-
-  <script>
     const db = firebase.firestore();
+
+    function isAvailable(available) {
+      if (available) return "판매 중";
+      else return "품절";
+    }
 
     function priceToString(price) {
       return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -101,42 +86,20 @@
       .then((result) => {
         console.log(result.data());
 
-        $(".detailImage").css("background-image", `url(${result.data().image})`);
-        $(".productDetailBrand").html(result.data().brand);
-        $(".productDetailSellerName").html("Seller name: " + result.data().sellerName);
-        $(".productDetailCategory").html("Category: " + result.data().category);
-        $(".productDetailSize").html("Size: " + result.data().size);
-        $(".productDetailDetail").html(result.data().detail);
-        $(".productDetailPrice").html(priceToString(result.data().price) + " KRW");
-
-        // according to login or not, show or hide detail btn 
-        if (localStorage.getItem('user')) { // login
-          if (result.data().sellerUid == JSON.parse(localStorage.getItem('user')).uid) {
-            $("#editBtn, #delectBtn").show(); // seller
-            $("#editBtn").click(function () {
-              $('.container').fadeOut(500, function () {
-                window.location.href = `./edit.html?id=${queryStream.get("id")}`;
-              });
-            });
-          }
-          else {
-            $("#chatBtn").show(); // buyer
-          }
-        }
-        else {
-          $("#visitorBtn").show(); // not login
-        }
+        $("#mainImage").css("background-image", `url(${result.data().image[0]})`);
+        $(".available").html(isAvailable(result.data().available));
+        $(".quality").html(result.data().quality + "/5");
+        $(".brand").html(result.data().brand);
+        $(".category").html(result.data().category);
+        $(".size").html(result.data().size);
+        $(".detail").html(result.data().detail);
+        $(".price").html(priceToString(result.data().price) + " KRW");
       })
-  </script>
 
-  <script>
-    // page Move
-    $("#visitorBtn").click(function () {
-      $(".container").fadeOut(500, function () {
-        window.location.href = "./login.html";
-      });
-    })
-
+    $(function () {
+      $("#nav").load("nav.html");
+      $("#footer").load("footer.html");
+    });
   </script>
 
 </body>

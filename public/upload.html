@@ -205,7 +205,7 @@
                 size: sizeArrResult()
             }
             db.collection('product').add(template).then((result) => {
-                // window.location.href = './index.html';
+                window.location.href = './index.html';
             }).catch((error) => {
                 alert("Upload Failed! : " + error);
             })

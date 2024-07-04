@@ -250,3 +250,13 @@ select option:hover {
   box-shadow: 0 0 10px 100px #aaaaaa inset;
   color: #f8f8f8;
 }
+
+.productImage {
+  width: 150px;
+  height: 150px;
+
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: transparent;
+}
