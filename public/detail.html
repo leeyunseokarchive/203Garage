@@ -32,20 +32,19 @@
   <section>
 
     <div>
-      <div class="imageContainer">
-        <div class="productImage" id="mainImage" style="background-image: url(``)"></div>
-      </div>
+      <div class="productImage" id="mainImage" style="background-image: url(``)"></div>
 
       <div class="available"></div>
       <div class="quality"></div>
       <div class="brand"></div>
       <div class="category"></div>
       <div class="size"></div>
-      <div class="detail"></div>
-      <div class="productDetailPrice">KRW</div>
+      <div class="price">KRW</div>
 
       <button class="normBtn" id="buyBtn">BUY</button>
       <button class="normBtn" id="cartBtn">CART</button>
+
+      <div class="detail"></div>
 
       <div class="imageContainer" id="detailImageContainer"></div>
     </div>
@@ -86,7 +85,7 @@
       .then((result) => {
         console.log(result.data());
 
-        $("#mainImage").css("background-image", `url(${result.data().image[0]})`);
+        $('#mainImage').css('background-image', 'url("' + result.data().image[0] + '")');
         $(".available").html(isAvailable(result.data().available));
         $(".quality").html(result.data().quality + "/5");
         $(".brand").html(result.data().brand);
@@ -94,6 +93,14 @@
         $(".size").html(result.data().size);
         $(".detail").html(result.data().detail);
         $(".price").html(priceToString(result.data().price) + " KRW");
+
+        result.data().image.forEach(function (e) {
+          console.log(e);
+          var template = `
+          <div class="productImage" style="background-image: url('${e}');"></div>
+          `;
+          $("#detailImageContainer").append(template);
+        });
       })
 
     $(function () {
