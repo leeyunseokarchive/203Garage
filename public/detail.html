@@ -127,7 +127,7 @@
       }
       else {
         let cartItem = [];
-        cartItem.push(queryStream.get("id"), $("select[id=option] option:selected").val(), 1)
+        cartItem.push({productId : queryStream.get("id")}, {option : $("select[id=option] option:selected").val()}, {count : 1})
         localStorage.setItem("cart",
         JSON.stringify(cartItem),
       );
