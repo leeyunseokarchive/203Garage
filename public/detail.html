@@ -127,9 +127,9 @@
       }
       else {
         let cartItem = [];
-        cartItem.push(queryStream.get("id"), $("select[id=option] option:selected").val())
+        cartItem.push(queryStream.get("id"), $("select[id=option] option:selected").val(), 1)
         localStorage.setItem("cart",
-        JSON.stringify(cartItem)
+        JSON.stringify(cartItem),
       );
       }
     }
