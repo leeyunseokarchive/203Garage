@@ -193,6 +193,7 @@ footer p {
 
 .normBtn {
   width: fit-content;
+  height: 100%;
   appearance: none;
   background-color: transparent;
   border: 2px solid #f8f8f8;

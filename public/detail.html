@@ -41,8 +41,12 @@
       <div class="size"></div>
       <div class="price">KRW</div>
 
-      <button class="normBtn" id="buyBtn">BUY</button>
-      <button class="normBtn" id="cartBtn">CART</button>
+      <select id="option">
+        <option value="" selected>CHOOSE</option>
+      </select>
+
+      <button class="normBtn" id="buyBtn" onclick="buy()">BUY</button>
+      <button class="normBtn" id="cartBtn" onclick="addToCart()">CART</button>
 
       <div class="detail"></div>
 
@@ -94,6 +98,10 @@
         $(".detail").html(result.data().detail);
         $(".price").html(priceToString(result.data().price) + " KRW");
 
+        for (let i = 0; i < result.data().size.length; i++) {
+          $("#option").append("<option value=" + result.data().size[i] + ">" + result.data().size[i] + "</option>");
+        }
+
         result.data().image.forEach(function (e) {
           console.log(e);
           var template = `
@@ -102,6 +110,29 @@
           $("#detailImageContainer").append(template);
         });
       })
+
+    function buy() {
+      if ($("select[id=option] option:selected").val() == "") {
+        alert("Choose an option, please.");
+      }
+      else {
+        // TODO
+      }
+
+    }
+
+    function addToCart() {
+      if ($("select[id=option] option:selected").val() == "") {
+        alert("Choose an option, please.");
+      }
+      else {
+        let cartItem = [];
+        cartItem.push(queryStream.get("id"), $("select[id=option] option:selected").val())
+        localStorage.setItem("cart",
+        JSON.stringify(cartItem)
+      );
+      }
+    }
 
     $(function () {
       $("#nav").load("nav.html");
