@@ -136,12 +136,14 @@
           count: 1
         }
         const cartItem = JSON.parse(localStorage.getItem("cart")) || [];
+        cartItem.push(info);
 
         let dup = [];
         let check = cartItem.reduce((acc, cur) => {
           if (objFound = acc.find(accItem => accItem.productId === cur.productId && accItem.option === cur.option)) {
+            alert("This product has already been added to cart.");
             dup.push(cur);
-            alert("This product has already been added to cart.")
+            // findOf나 indexOf 함수를 써서 인덱스를 알아낼 수 있을지도?
           }
           else {
             acc.push(cur);
@@ -150,12 +152,10 @@
         }, []);
 
         console.log("check: ", check);
-        dup[0].count++;
         console.log("dup:", dup);
 
-        cartItem.push(info);
         localStorage.setItem("cart",
-          JSON.stringify(cartItem),
+          JSON.stringify(check),
         );
 
         cartItemCount();
