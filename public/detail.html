@@ -13,6 +13,7 @@
   <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Libre+Barcode+128&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/neodgm/neodgm-pro-webfont@latest/neodgm_pro/style.css">
   <link rel="stylesheet" href="./reset.css">
   <link rel="stylesheet" href="./style.css">
   <script src="./zoomDisabler.js" defer></script>
@@ -103,7 +104,6 @@
         }
 
         result.data().image.forEach(function (e) {
-          console.log(e);
           var template = `
           <div class="productImage" style="background-image: url('${e}');"></div>
           `;
@@ -116,7 +116,11 @@
         alert("Choose an option, please.");
       }
       else {
-        // TODO
+        const info = {
+          productId: queryStream.get("id"),
+          option: $("select[id=option] option:selected").val(),
+          count: 1
+        }
       }
 
     }
@@ -126,11 +130,35 @@
         alert("Choose an option, please.");
       }
       else {
-        let cartItem = [];
-        cartItem.push({productId : queryStream.get("id")}, {option : $("select[id=option] option:selected").val()}, {count : 1})
+        const info = {
+          productId: queryStream.get("id"),
+          option: $("select[id=option] option:selected").val(),
+          count: 1
+        }
+        const cartItem = JSON.parse(localStorage.getItem("cart")) || [];
+
+        let dup = [];
+        let check = cartItem.reduce((acc, cur) => {
+          if (objFound = acc.find(accItem => accItem.productId === cur.productId && accItem.option === cur.option)) {
+            dup.push(cur);
+            alert("This product has already been added to cart.")
+          }
+          else {
+            acc.push(cur);
+          }
+          return acc;
+        }, []);
+
+        console.log("check: ", check);
+        dup[0].count++;
+        console.log("dup:", dup);
+
+        cartItem.push(info);
         localStorage.setItem("cart",
-        JSON.stringify(cartItem),
-      );
+          JSON.stringify(cartItem),
+        );
+
+        cartItemCount();
       }
     }
 

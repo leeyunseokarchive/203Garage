@@ -1,6 +1,7 @@
 <nav>
   <img onclick="openNav()" src="./images/menuIcon.svg" />
-  <img onclick="window.location.href = './cart.html';" src="./images/cartIcon.svg" />
+  <img onclick="window.location.href = './cart.html';" src="./images/cartIcon.svg" style="position: relative; top: 3px;"/>
+  <span id="cartItemCount">0</span>
 </nav>
 
 <div id="mySidenav" class="sidenav">
@@ -19,6 +20,10 @@
 </div>
 
 <script>
+  $(function () {
+    cartItemCount();
+    });
+
   function openNav() {
     $("#mySidenav").css("width", "100%");
   }
@@ -26,4 +31,9 @@
   function closeNav() {
     $("#mySidenav").css("width", "0");
   }
+
+  function cartItemCount() {
+    $("#cartItemCount").html(JSON.parse(localStorage.getItem("cart")).length);
+  }
+
 </script>

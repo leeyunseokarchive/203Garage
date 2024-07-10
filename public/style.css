@@ -49,6 +49,17 @@ nav img {
   float: right;
 }
 
+nav #cartItemCount {
+  float: right;
+  position: relative;
+  right: -35px;
+  top: -5px;
+  font-size: 0.5rem;
+  font-weight: 700;
+  color: #f8f8f8
+}
+
+
 .sidenav {
   height: 100lvh;
   width: 0;
