@@ -136,26 +136,26 @@
           count: 1
         }
         const cartItem = JSON.parse(localStorage.getItem("cart")) || [];
-        cartItem.push(info);
 
-        let dup = [];
-        let check = cartItem.reduce((acc, cur) => {
-          if (objFound = acc.find(accItem => accItem.productId === cur.productId && accItem.option === cur.option)) {
-            alert("This product has already been added to cart.");
-            dup.push(cur);
-            // findOf나 indexOf 함수를 써서 인덱스를 알아낼 수 있을지도?
-          }
-          else {
-            acc.push(cur);
-          }
-          return acc;
-        }, []);
+        var index = cartItem.findIndex(i => i.productId === info.productId && i.option === info.option);
+        console.log(index);
 
-        console.log("check: ", check);
-        console.log("dup:", dup);
+        if (index === -1) {
+          // this item does not exist
+          cartItem.push(info);
+        }
+        else {
+          // this item already exist
+          if (confirm("This product has already been added to cart.\nDo you want to add one more?")) {
+            cartItem[index].count++;
+            alert("Succeed!");
+          } else {
+            alert("Canceled!");
+          }
+        }
 
         localStorage.setItem("cart",
-          JSON.stringify(check),
+          JSON.stringify(cartItem),
         );
 
         cartItemCount();

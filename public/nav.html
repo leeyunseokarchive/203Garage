@@ -33,7 +33,11 @@
   }
 
   function cartItemCount() {
-    $("#cartItemCount").html(JSON.parse(localStorage.getItem("cart")).length);
+    var itemCount = 0;
+    JSON.parse(localStorage.getItem("cart")).forEach(function(item) {
+      itemCount += item.count;
+    });
+    $("#cartItemCount").html(itemCount);
   }
 
 </script>
