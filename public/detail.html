@@ -73,8 +73,8 @@
     const db = firebase.firestore();
 
     function isAvailable(available) {
-      if (available) return "판매 중";
-      else return "품절";
+      if (available) return "For Sale";
+      else return "Sold Out";
     }
 
     function priceToString(price) {

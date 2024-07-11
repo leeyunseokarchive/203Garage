@@ -71,6 +71,11 @@
       return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     }
 
+    function qualityEval(quality) {
+      if(quality === 5) return "NEW!";
+      else return quality+" / 5"
+    }
+
     var queryStream = new URLSearchParams(window.location.search);
     var category = queryStream.get("id");
 
@@ -89,7 +94,9 @@
             var template = `<div class="product" OnClick="$('section, header, footer').fadeOut(500, function() {
     window.location.href = './detail.html?id=${doc.id}';
  }); " style="display: none; cursor:pointer;" >
-          <div class="thumbnail" style="background-image: url('${doc.data().image}') ;"></div>
+          <div class="thumbnail" style="background-image: url('${doc.data().image}') ;">
+            <p class="quality">${qualityEval(doc.data().quality)}</p>
+            </div>
           <div class="productIndex">
             <p class="brand">${doc.data().brand}</p>
             <p class="size">${doc.data().size}</p>
@@ -129,7 +136,9 @@
             var template = `<div class="product" OnClick="$('section, header, footer').fadeOut(500, function() {
     window.location.href = './detail.html?id=${doc.id}';
  }); " style="display: none; cursor:pointer;" >
-          <div class="thumbnail" style="background-image: url('${doc.data().image}') ;"></div>
+          <div class="thumbnail" style="background-image: url('${doc.data().image}') ;">
+            <p class="quality">${qualityEval(doc.data().quality)}</p>
+            </div>
           <div class="productIndex">
             <p class="brand">${doc.data().brand}</p>
             <p class="size">${doc.data().size}</p>
