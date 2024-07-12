@@ -287,3 +287,33 @@ select option:hover {
   background-size: cover;
   background-color: transparent;
 }
+
+.cartItemThumbnail {
+  position: relative;
+  max-width: 80px;
+  width: 100%;
+  height: 80px;
+
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: transparent;
+}
+
+.cartItemWrap {
+  display: flex;
+
+}
+
+.cartItemIndexWrap {
+  display: flex;
+  
+}
+
+.cartItemIndex1 {
+  padding: 0 1rem 0;
+}
+
+.cartItemIndex2 {
+  justify-content: center;
+}

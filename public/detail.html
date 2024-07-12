@@ -146,12 +146,18 @@
         }
         else {
           // this item already exist
+          if (confirm("This item is already in the cart.\nDo you wanna go to the cart?")) {
+            window.location.href = './cart.html';
+          } else {
+          }
+          /** 이미 item이 cart에 존재할 경우 count 추가 기능
           if (confirm("This product has already been added to cart.\nDo you want to add one more?")) {
             cartItem[index].count++;
             alert("Succeed!");
           } else {
             alert("Canceled!");
           }
+            */
         }
 
         localStorage.setItem("cart",

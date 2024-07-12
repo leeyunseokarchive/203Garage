@@ -32,7 +32,30 @@
 
   <section>
 
-    
+    <div class="title">
+      <span id="title">장바구니</span>
+    </div>
+
+    <div class="cartList">
+      <div class="cartItemWrap" OnClick="$('section, header, footer').fadeOut(500, function() {
+        window.location.href = './detail.html?id=${doc.id}';
+     }); " style="cursor:pointer;">
+        <div class="cartItemThumbnail"
+          style="background-image: url('https://firebasestorage.googleapis.com/v0/b/garage-a3390.appspot.com/o/image%2F203halftee%2F203halftee1.jpg?alt=media&token=a8ea64e5-63c4-4329-8c10-340a9826dc2c') ;">
+        </div>
+        <div class="cartItemIndexWrap">
+          <div class="cartItemIndex1">
+            <p class="brand">203</p>
+            <p class="category">Top</p>
+            <p class="size">XL</p>
+          </div>
+          <div class="cartItemIndex2">
+            <p class="count">Amount : 3</p>
+            <p class="price">183,000 KRW</p>
+          </div>
+        </div>
+      </div>
+    </div>
 
   </section>
 
@@ -53,12 +76,17 @@
     const db = firebase.firestore();
 
     function isAvailable(available) {
-      if (available) return "판매 중";
-      else return "품절";
+      if (available) return "For Sale";
+      else return "Sold Out";
     }
 
     function priceToString(price) {
       return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    }
+
+    function qualityEval(quality) {
+      if (quality === 5) return "NEW!";
+      else return quality + " / 5"
     }
 
     $(function () {
