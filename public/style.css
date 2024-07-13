@@ -307,6 +307,9 @@ select option:hover {
 }
 
 .swiper-slide .detailContent2 {
+  position: absolute;
+  bottom: 5rem;
+  right: 1rem;
   font-size: 1rem;
   opacity: 0;
 }
@@ -320,7 +323,7 @@ select option:hover {
 }
 
 .swiper-slide-active .detailContent2 {
-  animation: ani 1s .4s both
+  animation: ani 1s .5s both
 }
 
 @keyframes ani {
@@ -339,6 +342,7 @@ select option:hover {
   0% {
     opacity: 0.3;
     transform: translateY(20px);
+
   }
 
   100% {
