@@ -16,13 +16,13 @@ button {
   font-family: "DotGothic16", sans-serif;
   font-weight: 400;
   font-style: normal;
-  color: #f8f8f8;
+  color: #222222;
   font-size: 1rem;
 }
 
 html {
   overscroll-behavior: none;
-  background-color: black;
+  background-color: #f2f2f2;
   /* font-size: 62.5%; */
 }
 
@@ -38,10 +38,13 @@ body {
 
 nav {
   position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 56px;
   padding: 1rem;
-  background-color: black;
+  background-color: transparent;
+  z-index: 10;
 }
 
 nav img {
@@ -56,7 +59,7 @@ nav #cartItemCount {
   top: -5px;
   font-size: 0.5rem;
   font-weight: 700;
-  color: #f8f8f8
+  color: #222222
 }
 
 
@@ -64,10 +67,10 @@ nav #cartItemCount {
   height: 100lvh;
   width: 0;
   position: fixed;
-  z-index: 1;
+  z-index: 20;
   top: 0;
   right: 0;
-  background-color: black;
+  background-color: #f2f2f2;
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 56px;
@@ -75,10 +78,11 @@ nav #cartItemCount {
 }
 
 .sidenav a {
+  z-index: 20;
   padding: 1rem 1rem 1rem 2rem;
   text-decoration: none;
   font-size: 1rem;
-  color: #f8f8f8;
+  color: #222222;
   display: block;
   transition: 0.3s;
   font-family: 'NeoDunggeunmo Pro';
@@ -93,6 +97,7 @@ nav #cartItemCount {
   top: 0;
   right: 0;
   padding: 1rem;
+  z-index: 30;
 }
 
 header {
@@ -102,8 +107,8 @@ header {
 section {
   margin: 1rem;
   padding: 2rem 0 4rem;
-  border-top: 1px dashed #f8f8f8;
-  border-bottom: 1px dashed #f8f8f8;
+  border-top: 1px dashed #222222;
+  border-bottom: 1px dashed #222222;
 }
 
 .title {
@@ -138,7 +143,6 @@ section {
   position: relative;
   width: 150px;
   height: 150px;
-
   background-position: 50% 50%;
   background-repeat: no-repeat;
   background-size: contain;
@@ -152,7 +156,7 @@ section {
   text-align: center;
   font-size: 0.7rem;
   padding: 0.2rem;
-  color: #f8f8f8;
+  color: #f2f2f2;
   width: 3rem;
   background-color: black;
 }
@@ -187,7 +191,7 @@ footer p {
   width: 1rem;
   height: 1rem;
   user-select: none;
-  border: 2px solid #f8f8f8;
+  border: 2px solid #222222;
   display: block;
 }
 
@@ -204,7 +208,7 @@ footer p {
   position: absolute;
   top: 25%;
   left: 25%;
-  background-color: #f8f8f8;
+  background-color: #222222;
   width: 50%;
   height: 50%;
   transform: scale(0);
@@ -217,10 +221,10 @@ footer p {
 
 .normBtn {
   width: fit-content;
-  height: 100%;
+  height: 2rem;
   appearance: none;
   background-color: transparent;
-  border: 2px solid #f8f8f8;
+  border: 2px solid #222222;
   border-radius: 0;
   box-sizing: border-box;
   cursor: pointer;
@@ -244,10 +248,10 @@ footer p {
 
 select {
   width: 10rem;
-  height: 100%;
+  height: 2rem;
   padding-left: 0.5rem;
   font-size: 1rem;
-  border: 2px solid #f8f8f8;
+  border: 2px solid #222222;
   border-radius: 0;
   -webkit-appearance: none;
   /* 화살표 없애기 for chrome*/
@@ -266,26 +270,24 @@ select::-ms-expand {
 select option:checked,
 select option:hover {
   background: #aaaaaa;
-  color: #f8f8f8;
+  color: #222222;
 }
 
 /* check, hover 스타일 설정 FireFox */
 select option:checked,
 select option:hover {
   box-shadow: 0 0 10px 100px #aaaaaa inset;
-  color: #f8f8f8;
+  color: #222222;
 }
 
-.productImage {
-  max-width: 1024px;
-  width: 100%;
-  height: 0;
-  padding-bottom: 100%;
-
-  background-position: 50% 50%;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-color: transparent;
+.fixedWindow {
+  position: fixed;
+  bottom: 4rem;
+  right: 1rem;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
 }
 
 .cartItemThumbnail {

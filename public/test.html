@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+  <title>203GARAGE | 203GARAGE OFFICIAL WEBPAGE</title>
+
+  <link rel="icon" href="data:,">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Barcode+128&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/neodgm/neodgm-pro-webfont@latest/neodgm_pro/style.css">
+  <link rel="stylesheet" href="./reset.css">
+  <link rel="stylesheet" href="./style.css">
+  <script src="./zoomDisabler.js" defer></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-storage.js"></script>
+  <style>
+    .swiper {
+      width: 100%;
+      height: calc(100% - 56px);
+    }
+
+    .swiper-slide {
+      position: relative;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+    }
+
+    .swiper-slide .swipeHint {
+      position: absolute;
+      bottom: 2rem;
+      font-size: 1rem;
+      font-weight: bold;
+      opacity: 0;
+    }
+
+    .swiper-slide .tit {
+      font-size: 2rem;
+      font-weight: bold;
+      background-color: white;
+      opacity: 0;
+    }
+
+    .swiper-slide .txt {
+      font-size: 1rem;
+      font-size: 500;
+      width: 200px;
+      opacity: 0;
+    }
+
+    .swiper-slide-active .swipeHint {
+      animation: hintAni 1s ease-in-out infinite alternate;
+    }
+
+    .swiper-slide-active .tit {
+      animation: ani 1s .3s both
+    }
+
+    .swiper-slide-active .txt {
+      animation: ani 1s .4s both
+    }
+
+    @keyframes ani {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0px);
+      }
+    }
+
+    @keyframes hintAni {
+      0% {
+        opacity: 0.3;
+        transform: translateY(20px);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0px);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="nav" style="margin-bottom: 56px;"></div>
+
+  <div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" style="background-image: url('./images/203halftee1.jpg');">
+        <p class="swipeHint">Swipe<br>ˇ</p>
+      </div>
+      <div class="swiper-slide" style="background-image: url('./images/203halftee1.jpg');">
+        <p class="tit">Slide 1</p>
+        <p class="txt">포켓몬스터 게임1 시리즈의 대전을 기반으로 한 로그라이트류 팬 게임이다. 게임 메인 홈페이지에 의하면 Risk of Rain 2의 영향을 강하게 받았다고 한다.</p>
+      </div>
+      <div class="swiper-slide" style="background-image: url('./images/203halftee2.jpg');">
+        <p class="tit">Slide 2</p>
+        <p class="txt">포켓몬스터 게임2 시리즈의 대전을 기반으로 한 로그라이트류 팬 게임이다. 게임 메인 홈페이지에 의하면 Risk of Rain 2의 영향을 강하게 받았다고 한다.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="fixedWindow">
+    <select id="option">
+      <option value="" selected>CHOOSE</option>
+    </select>
+    <div>
+      <button class="normBtn" id="buyBtn" onclick="buy()">BUY</button>
+      <button class="normBtn" id="cartBtn" onclick="addToCart()">CART</button>
+    </div>
+  </div>
+
+  <script>
+    var swiper = new Swiper(".mySwiper", {
+      direction: "vertical",
+      mousewheel: true,
+      speed: 700,
+      effect: "fade"
+    });
+
+    $(function () {
+      $("#nav").load("nav.html");
+    });
+  </script>
+</body>
+
+</html>
