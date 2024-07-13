@@ -26,82 +26,6 @@
   <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-storage.js"></script>
-  <style>
-    .swiper {
-      width: 100%;
-      height: calc(100% - 56px);
-    }
-
-    .swiper-slide {
-      position: relative;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      background-repeat: no-repeat;
-      background-size: contain;
-      background-position: center;
-    }
-
-    .swiper-slide .swipeHint {
-      position: absolute;
-      bottom: 2rem;
-      font-size: 1rem;
-      font-weight: bold;
-      opacity: 0;
-    }
-
-    .swiper-slide .tit {
-      font-size: 2rem;
-      font-weight: bold;
-      background-color: white;
-      opacity: 0;
-    }
-
-    .swiper-slide .txt {
-      font-size: 1rem;
-      font-size: 500;
-      width: 200px;
-      opacity: 0;
-    }
-
-    .swiper-slide-active .swipeHint {
-      animation: hintAni 1s ease-in-out infinite alternate;
-    }
-
-    .swiper-slide-active .tit {
-      animation: ani 1s .3s both
-    }
-
-    .swiper-slide-active .txt {
-      animation: ani 1s .4s both
-    }
-
-    @keyframes ani {
-      0% {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-
-      100% {
-        opacity: 1;
-        transform: translateY(0px);
-      }
-    }
-
-    @keyframes hintAni {
-      0% {
-        opacity: 0.3;
-        transform: translateY(20px);
-      }
-
-      100% {
-        opacity: 1;
-        transform: translateY(0px);
-      }
-    }
-  </style>
 </head>
 
 <body>
@@ -110,27 +34,44 @@
 
   <div class="swiper mySwiper">
     <div class="swiper-wrapper">
+
       <div class="swiper-slide" style="background-image: url('./images/203halftee1.jpg');">
+        <div class="detailContent1">
+          <div class="brand">203</div>
+      <div class="category">Top</div>
+        </div>
+        <div class="detailContent2">
+          <div class="price">10,000 KRW</div>
+        </div>
         <p class="swipeHint">Swipe<br>ˇ</p>
       </div>
-      <div class="swiper-slide" style="background-image: url('./images/203halftee1.jpg');">
-        <p class="tit">Slide 1</p>
-        <p class="txt">포켓몬스터 게임1 시리즈의 대전을 기반으로 한 로그라이트류 팬 게임이다. 게임 메인 홈페이지에 의하면 Risk of Rain 2의 영향을 강하게 받았다고 한다.</p>
-      </div>
-      <div class="swiper-slide" style="background-image: url('./images/203halftee2.jpg');">
-        <p class="tit">Slide 2</p>
-        <p class="txt">포켓몬스터 게임2 시리즈의 대전을 기반으로 한 로그라이트류 팬 게임이다. 게임 메인 홈페이지에 의하면 Risk of Rain 2의 영향을 강하게 받았다고 한다.</p>
-      </div>
-    </div>
-  </div>
 
-  <div class="fixedWindow">
-    <select id="option">
-      <option value="" selected>CHOOSE</option>
-    </select>
-    <div>
-      <button class="normBtn" id="buyBtn" onclick="buy()">BUY</button>
-      <button class="normBtn" id="cartBtn" onclick="addToCart()">CART</button>
+      <div class="swiper-slide" style="background-image: url('./images/203halftee2.jpg');">
+        <div class="detailContent1">
+          <div class="available">판매 여부: For Sale</div>
+          <div class="quality">상태 : 새상품</div>
+          <div class="brand">상표 : 203</div>
+          <div class="category">분류 : Top</div>
+        </div>
+        <div class="detailContent2">
+          <div class="size">사이즈 : XL</div>
+          <div class="price">가격 : 10,000 KRW</div>
+        </div>
+      </div>
+
+      <div class="swiper-slide" style="background-image: url('./images/203halftee3.jpg');">
+        <div class="detailContent1">
+          <div class="detail">대충 디테일한 내용</div>
+        </div>
+        <div class="detailContent2">
+          <select id="option">
+            <option value="" selected>CHOOSE</option>
+          </select>
+          <button class="normBtn" id="buyBtn" onclick="buy()">BUY</button>
+          <button class="normBtn" id="cartBtn" onclick="addToCart()">CART</button>
+        </div>
+        </div>
+      
     </div>
   </div>
 
