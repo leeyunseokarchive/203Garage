@@ -33,7 +33,7 @@
     <div class="swiper-wrapper">
 
       <div class="first swiper-slide" style="background-image: url('./images/203halftee1.jpg');">
-        <div class="detailContent1" style="font-size: 2rem;">
+        <div class="detailContent1" style="font-size: 2rem; font-weight: 600; row-gap: 0;">
           <div class="brand"></div>
       <div class="category"></div>
         </div>
@@ -47,7 +47,6 @@
         <div class="detailContent1">
           <div class="available">판매여부 : </div>
           <div class="quality">상품상태 : </div>
-          <div style="color: #c0c0c0;">'5/5'는 새상품입니다.</div>
           <div class="brand">상표 : </div>
           <div class="category">분류 : </div>
         </div>
@@ -62,11 +61,13 @@
           <div class="detail"></div>
         </div>
         <div class="detailContent2">
-          <select id="option">
-            <option value="" selected>CHOOSE</option>
-          </select>
-          <button class="normBtn" id="buyBtn" onclick="buy()">BUY</button>
-          <button class="normBtn" id="cartBtn" onclick="addToCart()">CART</button>
+          <div>
+            <select id="option">
+              <option value="" selected>CHOOSE</option>
+            </select>
+            <button class="normBtn" id="buyBtn" onclick="buy()">BUY</button>
+            <button class="normBtn" id="cartBtn" onclick="addToCart()">CART</button>
+          </div>
         </div>
         </div>
       
@@ -109,6 +110,7 @@
         $(".available").append(isAvailable(result.data().available));
         $(".price").append(priceToString(result.data().price) + " KRW");
         $(".quality").append(result.data().quality + "/5");
+        if(result.data().quality == 5) $(".quality").append(" (새상품)");
         $(".size").append(result.data().size);
         $(".detail").append(result.data().detail);
 
