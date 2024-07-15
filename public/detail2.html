@@ -16,8 +16,6 @@
   <script src="./zoomDisabler.js" defer></script>
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"
     integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
   <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
@@ -29,52 +27,36 @@
 
   <div id="nav" style="margin-bottom: 56px;"></div>
 
-  <div class="swiper mySwiper">
-    <div class="swiper-wrapper">
+  <section>
 
-      <div class="first swiper-slide" style="background-image: url('./images/203halftee1.jpg');">
-        <div class="detailContent1" style="font-size: 2rem;">
-          <div class="brand"></div>
+    <div>
+      <div class="productImage" id="mainImage" style="background-image: url(``)"></div>
+
+      <div class="available"></div>
+      <div class="quality"></div>
+      <div class="brand"></div>
       <div class="category"></div>
-        </div>
-        <div class="detailContent2">
-          <div class="price"></div>
-        </div>
-        <p class="swipeHint">Swipe<br>ˇ</p>
-      </div>
+      <div class="size"></div>
+      <div class="price">KRW</div>
 
-      <div class="second swiper-slide" style="background-image: url('./images/203halftee2.jpg');">
-        <div class="detailContent1">
-          <div class="available">판매여부 : </div>
-          <div class="quality">상품상태 : </div>
-          <div style="color: #c0c0c0;">'5/5'는 새상품입니다.</div>
-          <div class="brand">상표 : </div>
-          <div class="category">분류 : </div>
-        </div>
-        <div class="detailContent2">
-          <div class="size">사이즈 : </div>
-          <div class="price">가격 : </div>
-        </div>
-      </div>
+      <select id="option">
+        <option value="" selected>CHOOSE</option>
+      </select>
 
-      <div class="third swiper-slide" style="background-image: url('./images/203halftee3.jpg');">
-        <div class="detailContent1">
-          <div class="detail"></div>
-        </div>
-        <div class="detailContent2">
-          <select id="option">
-            <option value="" selected>CHOOSE</option>
-          </select>
-          <button class="normBtn" id="buyBtn" onclick="buy()">BUY</button>
-          <button class="normBtn" id="cartBtn" onclick="addToCart()">CART</button>
-        </div>
-        </div>
-      
+      <button class="normBtn" id="buyBtn" onclick="buy()">BUY</button>
+      <button class="normBtn" id="cartBtn" onclick="addToCart()">CART</button>
+
+      <div class="detail"></div>
+
+      <div class="imageContainer" id="detailImageContainer"></div>
     </div>
-  </div>
+
+  </section>
+
+  <div id="footer"></div>
 
   <script>
-    // initialize Firebase
+    
     const firebaseConfig = {
       apiKey: "AIzaSyCyOKfpP4iWe6ruzCZdlFU-A1_M6-o_4ZU",
       authDomain: "garage-a3390.firebaseapp.com",
@@ -83,44 +65,53 @@
       messagingSenderId: "701651792962",
       appId: "1:701651792962:web:3db7b2ce426ebb878169db"
     };
+
+    // initialize Firebase
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
 
-    // available check method
     function isAvailable(available) {
-      if (available) return "판매중";
-      else return "품절";
+      if (available) return "For Sale";
+      else return "Sold Out";
     }
 
-    // price present method
     function priceToString(price) {
       return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     }
 
     // detail Loading Method
     var queryStream = new URLSearchParams(window.location.search);
+
     db.collection("product")
       .doc(queryStream.get("id"))
       .get()
       .then((result) => {
         console.log(result.data());
-        $(".brand").append(result.data().brand);
-        $(".category").append(result.data().category);
-        $(".available").append(isAvailable(result.data().available));
-        $(".price").append(priceToString(result.data().price) + " KRW");
-        $(".quality").append(result.data().quality + "/5");
-        $(".size").append(result.data().size);
-        $(".detail").append(result.data().detail);
+
+        $('#mainImage').css('background-image', 'url("' + result.data().image[0] + '")');
+        $(".available").html(isAvailable(result.data().available));
+        $(".quality").html(result.data().quality + "/5");
+        $(".brand").html(result.data().brand);
+        $(".category").html(result.data().category);
+        $(".size").html(result.data().size);
+        $(".detail").html(result.data().detail);
+        $(".price").html(priceToString(result.data().price) + " KRW");
 
         for (let i = 0; i < result.data().size.length; i++) {
           $("#option").append("<option value=" + result.data().size[i] + ">" + result.data().size[i] + "</option>");
         }
+
+        result.data().image.forEach(function (e) {
+          var template = `
+          <div class="productImage" style="background-image: url('${e}');"></div>
+          `;
+          $("#detailImageContainer").append(template);
+        });
       })
 
-      // buy method
-      function buy() {
+    function buy() {
       if ($("select[id=option] option:selected").val() == "") {
-        alert("옵션을 선택해주세요.");
+        alert("Choose an option, please.");
       }
       else {
         const info = {
@@ -132,10 +123,9 @@
 
     }
 
-    // add to cart method
     function addToCart() {
       if ($("select[id=option] option:selected").val() == "") {
-        alert("옵션을 선택해주세요.");
+        alert("Choose an option, please.");
       }
       else {
         const info = {
@@ -144,40 +134,44 @@
           count: 1
         }
         const cartItem = JSON.parse(localStorage.getItem("cart")) || [];
+
         var index = cartItem.findIndex(i => i.productId === info.productId && i.option === info.option);
+        console.log(index);
+
         if (index === -1) {
           // this item does not exist
           cartItem.push(info);
         }
         else {
           // this item already exist
-          if (confirm("이미 담긴 상품입니다.\n장바구니로 이동하시겠습니까?")) {
+          if (confirm("This item is already in the cart.\nDo you wanna go to the cart?")) {
             window.location.href = './cart.html';
           } else {
           }
+          /** 이미 item이 cart에 존재할 경우 count 추가 기능
+          if (confirm("This product has already been added to cart.\nDo you want to add one more?")) {
+            cartItem[index].count++;
+            alert("Succeed!");
+          } else {
+            alert("Canceled!");
+          }
+            */
         }
+
         localStorage.setItem("cart",
           JSON.stringify(cartItem),
         );
+
         cartItemCount();
       }
     }
 
-
-    
-    // swiper method
-    var swiper = new Swiper(".mySwiper", {
-      direction: "vertical",
-      mousewheel: true,
-      speed: 700,
-      effect: "fade"
-    });
-
-    // nav loading method
     $(function () {
       $("#nav").load("nav.html");
+      $("#footer").load("footer.html");
     });
   </script>
+
 </body>
 
 </html>
