@@ -109,9 +109,9 @@
         $(".category").append(result.data().category);
         $(".available").append(isAvailable(result.data().available));
         $(".price").append(priceToString(result.data().price) + " KRW");
-        $(".quality").append(result.data().quality + "/5");
+        $(".quality").append(result.data().quality + " / 5");
         if (result.data().quality == 5) $(".quality").append(" (새상품)");
-        $(".size").append(result.data().size);
+        $(".size").append(result.data().size.join(", "));
         $(".detail").append(result.data().detail);
 
         for (let i = 0; i < result.data().size.length; i++) {
@@ -119,8 +119,6 @@
         }
 
         for (let i = 0; i < 3; i++) {
-          console.log(i % result.data().image.length);
-          console.log(result.data().image[i % result.data().image.length]);
           $('#slide'+i).css('background-image', 'url("' + result.data().image[i % result.data().image.length] + '")');
         }
       })
