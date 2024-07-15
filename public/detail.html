@@ -10,7 +10,7 @@
   <link rel="icon" href="data:,">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Libre+Barcode+128&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/galmuri/dist/galmuri.css" rel="stylesheet" >
+  <link href="https://cdn.jsdelivr.net/npm/galmuri/dist/galmuri.css" rel="stylesheet">
   <link rel="stylesheet" href="./reset.css">
   <link rel="stylesheet" href="./style.css">
   <script src="./zoomDisabler.js" defer></script>
@@ -32,10 +32,10 @@
   <div class="swiper mySwiper">
     <div class="swiper-wrapper">
 
-      <div class="first swiper-slide" style="background-image: url('./images/203halftee1.jpg');">
+      <div class="swiper-slide" id="slide0" style="background-image: url('./images/203halftee1.jpg');">
         <div class="detailContent1" style="font-size: 2rem; font-weight: 600; row-gap: 0;">
           <div class="brand"></div>
-      <div class="category"></div>
+          <div class="category"></div>
         </div>
         <div class="detailContent2">
           <div class="price"></div>
@@ -43,7 +43,7 @@
         <p class="swipeHint">Swipe<br>ˇ</p>
       </div>
 
-      <div class="second swiper-slide" style="background-image: url('./images/203halftee2.jpg');">
+      <div class="swiper-slide" id="slide1" style="background-image: url('./images/203halftee2.jpg');">
         <div class="detailContent1">
           <div class="available">판매여부 : </div>
           <div class="quality">상품상태 : </div>
@@ -56,7 +56,7 @@
         </div>
       </div>
 
-      <div class="third swiper-slide" style="background-image: url('./images/203halftee3.jpg');">
+      <div class="swiper-slide" id="slide2" style="background-image: url('./images/203halftee3.jpg');">
         <div class="detailContent1">
           <div class="detail"></div>
         </div>
@@ -69,8 +69,8 @@
             <button class="normBtn" id="cartBtn" onclick="addToCart()">CART</button>
           </div>
         </div>
-        </div>
-      
+      </div>
+
     </div>
   </div>
 
@@ -110,17 +110,23 @@
         $(".available").append(isAvailable(result.data().available));
         $(".price").append(priceToString(result.data().price) + " KRW");
         $(".quality").append(result.data().quality + "/5");
-        if(result.data().quality == 5) $(".quality").append(" (새상품)");
+        if (result.data().quality == 5) $(".quality").append(" (새상품)");
         $(".size").append(result.data().size);
         $(".detail").append(result.data().detail);
 
         for (let i = 0; i < result.data().size.length; i++) {
           $("#option").append("<option value=" + result.data().size[i] + ">" + result.data().size[i] + "</option>");
         }
+
+        for (let i = 0; i < 3; i++) {
+          console.log(i % result.data().image.length);
+          console.log(result.data().image[i % result.data().image.length]);
+          $('#slide'+i).css('background-image', 'url("' + result.data().image[i % result.data().image.length] + '")');
+        }
       })
 
-      // buy method
-      function buy() {
+    // buy method
+    function buy() {
       if ($("select[id=option] option:selected").val() == "") {
         alert("옵션을 선택해주세요.");
       }
@@ -166,7 +172,7 @@
     }
 
 
-    
+
     // swiper method
     var swiper = new Swiper(".mySwiper", {
       direction: "vertical",
