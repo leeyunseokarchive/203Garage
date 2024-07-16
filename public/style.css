@@ -352,10 +352,14 @@ select option:hover {
   }
 }
 
+.cartList {
+  display: flex;
+  flex-direction: column;
+}
+
 .cartItemThumbnail {
   position: relative;
-  max-width: 80px;
-  width: 100%;
+  width: 80px;
   height: 80px;
 
   background-position: 50% 50%;
@@ -364,20 +368,19 @@ select option:hover {
   background-color: transparent;
 }
 
-.cartItemWrap {
+.cartItem {
   display: flex;
-
+  align-items: center;
+  width: fit-content;
 }
 
-.cartItemIndexWrap {
+.cartItemWrap {
   display: flex;
-
+  align-items: center;
+  text-align: center;
+  margin: 0 2rem 0;
 }
 
 .cartItemIndex1 {
-  padding: 0 1rem 0;
-}
-
-.cartItemIndex2 {
-  justify-content: center;
+  width: 80px;
 }

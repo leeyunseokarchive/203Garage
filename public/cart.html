@@ -10,7 +10,7 @@
   <link rel="icon" href="data:,">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Libre+Barcode+128&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/galmuri/dist/galmuri.css" rel="stylesheet" >
+  <link href="https://cdn.jsdelivr.net/npm/galmuri/dist/galmuri.css" rel="stylesheet">
   <link rel="stylesheet" href="./reset.css">
   <link rel="stylesheet" href="./style.css">
   <script src="./zoomDisabler.js" defer></script>
@@ -34,24 +34,99 @@
     </div>
 
     <div class="cartList">
-      <div class="cartItemWrap" OnClick="$('section, header, footer').fadeOut(500, function() {
+
+      <div class="cartItem">
+        <label class="container">
+          <input type="checkbox" checked />
+          <div class="checkmark"></div>
+        </label>
+
+        <div class="cartItemWrap" OnClick="$('section, header, footer').fadeOut(500, function() {
         window.location.href = './detail.html?id=${doc.id}';
      }); " style="cursor:pointer;">
-        <div class="cartItemThumbnail"
-          style="background-image: url('https://firebasestorage.googleapis.com/v0/b/garage-a3390.appspot.com/o/image%2F203halftee%2F203halftee1.jpg?alt=media&token=a8ea64e5-63c4-4329-8c10-340a9826dc2c') ;">
-        </div>
-        <div class="cartItemIndexWrap">
+
+          <div class="cartItemThumbnail"
+            style="background-image: url('https://firebasestorage.googleapis.com/v0/b/garage-a3390.appspot.com/o/image%2F203halftee%2F203halftee1.jpg?alt=media&token=a8ea64e5-63c4-4329-8c10-340a9826dc2c') ;">
+          </div>
+
           <div class="cartItemIndex1">
             <p class="brand">203</p>
             <p class="category">Top</p>
             <p class="size">XL</p>
           </div>
+
           <div class="cartItemIndex2">
             <p class="count">Amount : 3</p>
             <p class="price">183,000 KRW</p>
           </div>
+
         </div>
+
+        <img href="javascript:void(0)" class="delectItemBtn" src="./images/menuCloseIcon.svg" />
       </div>
+
+      <div class="cartItem">
+        <label class="container">
+          <input type="checkbox" checked />
+          <div class="checkmark"></div>
+        </label>
+
+        <div class="cartItemWrap" OnClick="$('section, header, footer').fadeOut(500, function() {
+        window.location.href = './detail.html?id=${doc.id}';
+     }); " style="cursor:pointer;">
+
+          <div class="cartItemThumbnail"
+            style="background-image: url('https://firebasestorage.googleapis.com/v0/b/garage-a3390.appspot.com/o/image%2F203halftee%2F203halftee1.jpg?alt=media&token=a8ea64e5-63c4-4329-8c10-340a9826dc2c') ;">
+          </div>
+
+          <div class="cartItemIndex1">
+            <p class="brand">203</p>
+            <p class="category">Top</p>
+            <p class="size">XL</p>
+          </div>
+
+          <div class="cartItemIndex2">
+            <p class="count">Amount : 3</p>
+            <p class="price">183,000 KRW</p>
+          </div>
+
+        </div>
+
+        <img href="javascript:void(0)" class="delectItemBtn" src="./images/menuCloseIcon.svg" />
+      </div>
+
+      <div class="cartItem">
+        <label class="container">
+          <input type="checkbox" checked />
+          <div class="checkmark"></div>
+        </label>
+
+        <div class="cartItemWrap" OnClick="$('section, header, footer').fadeOut(500, function() {
+        window.location.href = './detail.html?id=${doc.id}';
+     }); " style="cursor:pointer;">
+
+          <div class="cartItemThumbnail"
+            style="background-image: url('https://firebasestorage.googleapis.com/v0/b/garage-a3390.appspot.com/o/image%2F203halftee%2F203halftee1.jpg?alt=media&token=a8ea64e5-63c4-4329-8c10-340a9826dc2c') ;">
+          </div>
+
+          <div class="cartItemIndex1">
+            <p class="brand">203</p>
+            <p class="category">Top</p>
+            <p class="size">XL</p>
+          </div>
+
+          <div class="cartItemIndex2">
+            <p class="count">Amount : 3</p>
+            <p class="price">183,000 KRW</p>
+          </div>
+
+        </div>
+
+        <img href="javascript:void(0)" class="delectItemBtn" src="./images/menuCloseIcon.svg" />
+      </div>
+
+      
+
     </div>
 
   </section>
@@ -59,6 +134,7 @@
   <div id="footer"></div>
 
   <script>
+    // initialize Firebase
     const firebaseConfig = {
       apiKey: "AIzaSyCyOKfpP4iWe6ruzCZdlFU-A1_M6-o_4ZU",
       authDomain: "garage-a3390.firebaseapp.com",
@@ -67,22 +143,22 @@
       messagingSenderId: "701651792962",
       appId: "1:701651792962:web:3db7b2ce426ebb878169db"
     };
-
-    // initialize Firebase
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
 
+    // available check method
     function isAvailable(available) {
-      if (available) return "For Sale";
-      else return "Sold Out";
+      if (available) return "판매중";
+      else return "품절";
     }
 
+    // price present method
     function priceToString(price) {
       return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     }
 
     function qualityEval(quality) {
-      if (quality === 5) return "NEW!";
+      if (quality === 5) return "새상품!";
       else return quality + " / 5"
     }
 
