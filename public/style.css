@@ -352,6 +352,11 @@ select option:hover {
   }
 }
 
+.cartNav {
+  display: flex;
+  margin: 0 0 2rem;
+}
+
 .cartList {
   display: flex;
   flex-direction: column;
@@ -383,4 +388,8 @@ select option:hover {
 
 .cartItemIndex1 {
   width: 80px;
+}
+
+.cartFooter {
+  margin: 2rem 0 0;
 }

@@ -33,6 +33,14 @@
       <span id="title">장바구니</span>
     </div>
 
+    <div class="cartNav">
+      <label class="container">
+        <input type="checkbox" checked />
+        <div class="checkmark"></div>
+      </label>
+      <span style="margin-left: 1rem;">전체 0개</span>
+    </div>
+
     <div class="cartList">
 
       <div class="cartItem">
@@ -125,8 +133,12 @@
         <img href="javascript:void(0)" class="delectItemBtn" src="./images/menuCloseIcon.svg" />
       </div>
 
-      
+    </div>
 
+    <div class="cartFooter">
+      <p>결제할 상품 총 0개</p>
+      <p>상품 금액 0 KRW</p>
+      <button class="normBtn" id="buyBtn" onclick="buy()">BUY</button>
     </div>
 
   </section>
