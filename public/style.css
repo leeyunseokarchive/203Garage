@@ -277,8 +277,8 @@ select option:hover {
 }
 
 .swiper {
-  width: 100%;
-  height: calc(100% - 56px);
+  width: calc(100% - 2rem);
+  height: calc(100% - 112px);
 }
 
 .swiper-slide {
@@ -286,7 +286,6 @@ select option:hover {
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  padding: 1rem;
 }
 
 .swiper-slide .swipeHint {
