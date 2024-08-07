@@ -119,7 +119,7 @@
         }
 
         for (let i = 0; i < 3; i++) {
-          $('#slide'+i).css('background-image', 'url("' + result.data().image[i % result.data().image.length] + '")');
+          $('#slide' + i).css('background-image', 'url("' + result.data().image[i % result.data().image.length] + '")');
         }
       })
 
@@ -176,7 +176,10 @@
       direction: "vertical",
       mousewheel: true,
       speed: 700,
-      effect: "fade",
+      effect: 'fade',
+      fadeEffect: {
+        crossFade: true
+      },
       keyboard: {
         enabled: true,
       }
