@@ -45,7 +45,7 @@
 
       <div class="cartItem">
         <label class="container">
-          <input type="checkbox" checked />
+          <input type="checkbox" name="chk" checked />
           <div class="checkmark"></div>
         </label>
 
@@ -75,7 +75,7 @@
 
       <div class="cartItem">
         <label class="container">
-          <input type="checkbox" checked />
+          <input type="checkbox" name="chk" checked />
           <div class="checkmark"></div>
         </label>
 
@@ -105,7 +105,7 @@
 
       <div class="cartItem">
         <label class="container">
-          <input type="checkbox" checked />
+          <input type="checkbox" name="chk" checked />
           <div class="checkmark"></div>
         </label>
 
@@ -118,7 +118,7 @@
           </div>
 
           <div class="cartItemIndex1">
-            <p class="brand">203</p>
+            <p class="brand">1234567890</p>
             <p class="category">Top</p>
             <p class="size">XL</p>
           </div>
@@ -172,6 +172,49 @@
     function qualityEval(quality) {
       if (quality === 5) return "새상품!";
       else return quality + " / 5"
+    }
+
+    $(document).ready(function () {
+      var template = ``;
+    })
+
+    var checkedItemArr = new Array();
+    $(document).ready(function () {
+      // checkAll 클릭 시 전체선택, 전체선택해제
+      $("#checkAll").click(function () {
+        if ($("#checkAll").is(":checked")) $("input:checkbox").prop("checked", true);
+        else $("input:checkbox").prop("checked", false);
+        putCheckList();
+      });
+      // 체크박스 갯수와  체크된 체크박스 갯수 비교 후 불일치시 헤더 체크박스 해제 
+      $("input[name=chk]").change(function () {
+        if ($(this).length != $("input[name=chk]:checked").length) $("#checkAll").prop("checked", false);
+        putCheckList();
+      });
+    });
+
+    function putCheckList() {
+      checkedItemArr = new Array();
+      var idxArr = new Array();
+      var total = 0;
+
+      $("input[name=chk]:checked").each(function () {
+        idxArr.push($("input[name=chk]").index(this));
+      });
+
+      console.log(idxArr);
+      for (var i = 0; i < idxArr.length; i++) {
+        total += $(".cartList").children().eq(idxArr[i]).children().eq(1).children().eq(2).children().eq(1).text();
+
+      }
+      console.log(total);
+    }
+
+    function buy() {
+      if (checkedItemArr.length == 0) {
+        alert("체크된 항목이 없습니다.");
+        return;
+      }
     }
 
     $(function () {
